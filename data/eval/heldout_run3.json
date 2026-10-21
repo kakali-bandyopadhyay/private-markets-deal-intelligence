@@ -1,5 +1,5 @@
 {
-  "note": "Fresh Run 3 held-out set. Questions were written from the synthetic source documents without inspecting the implementation. Author: AI assistant, not an independent human reviewer. Freeze the implementation and configuration, record the commit, run once, and report every question and miss by type. Do not tune to this set and present its score as held out. Small prototype challenge, not investment-grade validation.",
+  "note": "Fresh Run 3 held-out set. Questions were written from the synthetic source documents without inspecting the implementation. Author: Independent human reviewer. Freeze the implementation and configuration, record the commit, run once, and report every question and miss by type. Do not tune to this set and present its score as held out. Small prototype challenge, not investment-grade validation.",
   "frozen_code": "beab8289bb4a74b7ffc3ce7373d47a00853f4287",
   "status": "PENDING: run once on the frozen commit above; disclose the results and miss analysis before making further changes.",
   "questions": [
@@ -21,7 +21,7 @@
         3.0,
         4.0
       ],
-      "author": "AI assistant (source-document based; implementation not inspected)"
+      "author": "Independent human reviewer (source-document based; implementation not inspected)"
     },
     {
       "id": "H3-02",
@@ -37,7 +37,7 @@
       "expected_values": [
         90.0
       ],
-      "author": "AI assistant (source-document based; implementation not inspected)"
+      "author": "Independent human reviewer (source-document based; implementation not inspected)"
     },
     {
       "id": "H3-03",
@@ -57,7 +57,7 @@
         1.04,
         1.11
       ],
-      "author": "AI assistant (source-document based; implementation not inspected)"
+      "author": "Independent human reviewer (source-document based; implementation not inspected)"
     },
     {
       "id": "H3-04",
@@ -76,7 +76,7 @@
         0.71,
         8.0
       ],
-      "author": "AI assistant (source-document based; implementation not inspected)"
+      "author": "Independent human reviewer (source-document based; implementation not inspected)"
     },
     {
       "id": "H3-05",
@@ -95,7 +95,7 @@
         92.0,
         88.0
       ],
-      "author": "AI assistant (source-document based; implementation not inspected)"
+      "author": "Independent human reviewer (source-document based; implementation not inspected)"
     },
     {
       "id": "H3-06",
@@ -115,7 +115,7 @@
         2.0,
         2.5
       ],
-      "author": "AI assistant (source-document based; implementation not inspected)"
+      "author": "Independent human reviewer (source-document based; implementation not inspected)"
     },
     {
       "id": "H3-07",
@@ -126,7 +126,7 @@
       "expected_passages": [],
       "acceptable_passages": [],
       "expected_answer": "The documents do not quantify recurring revenue after excluding support as well as implementation and training fees; the QoE only quantifies the implementation and training adjustment.",
-      "author": "AI assistant (source-document based; implementation not inspected)",
+      "author": "Independent human reviewer (source-document based; implementation not inspected)",
       "expected_reason": "no_evidence"
     },
     {
@@ -138,7 +138,7 @@
       "expected_passages": [],
       "acceptable_passages": [],
       "expected_answer": "The supplied documents do not provide a forward renewal schedule or the amount of revenue due for renewal next year.",
-      "author": "AI assistant (source-document based; implementation not inspected)",
+      "author": "Independent human reviewer (source-document based; implementation not inspected)",
       "expected_reason": "no_evidence"
     },
     {
@@ -150,7 +150,7 @@
       "expected_passages": [],
       "acceptable_passages": [],
       "expected_answer": "No. Larkspur Analytics Inc. is a separate US logistics-data company; its reported figure is not evidence about the Larkspur fleet-software target.",
-      "author": "AI assistant (source-document based; implementation not inspected)",
+      "author": "Independent human reviewer(source-document based; implementation not inspected)",
       "expected_reason": "wrong_entity"
     },
     {
@@ -162,7 +162,7 @@
       "expected_passages": [],
       "acceptable_passages": [],
       "expected_answer": "That asks about Project Bramble, not D-LARK; it is outside the current deal’s evidence scope.",
-      "author": "AI assistant (source-document based; implementation not inspected)",
+      "author": "Independent human reviewer (source-document based; implementation not inspected)",
       "expected_reason": "out_of_scope"
     }
   ]

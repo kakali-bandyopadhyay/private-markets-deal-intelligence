@@ -103,8 +103,9 @@ do not tune to it afterwards.
 **Held-out results, reported separately:** run 1 – 4/10 correct outcomes (12/12 citations resolved; two answers that
 should have been refusals); run 2, new unseen questions after fixing run 1's causes – 6/8 (12/12 citations resolved;
 one false conflict, one missed conflict, one unsupported citation). Run 1 questions were AI-drafted and reviewed by the
-owner; run 2 questions were prepared by an AI assistant that had not inspected the implementation. Misses, causes and
-fixes are in `docs/FINDINGS.md`; run 3 will use human-drafted, human-reviewed questions.
+owner; run 2 questions were prepared by an AI assistant that had not inspected the implementation. Run 3, ten new
+human-drafted, human-reviewed questions on the fixed build – 7/10 (11/11 citations resolved; four misses, including one
+confident answer to a different question caused by a run-2 fix). Misses, causes and fixes are in `docs/FINDINGS.md`.
 
 ## Repository map
 

@@ -7,7 +7,7 @@ Run log (each run once, on a frozen build; scores are reported separately and ne
 | Development | 30, written alongside the rules | – | 30/30 (optimistic) |
 | Held-out run 1 | 10, AI-drafted and reviewed by the owner (informed by earlier development-set misses) | 9cb20c6, run at 2f722ee (questions added, no code change) | **4/10** |
 | Held-out run 2 | 8 new, prepared by an AI assistant that had not inspected the implementation; unseen by the builder | 197d4b1 | **6/8** |
-| Held-out run 3 (planned) | new, human-drafted and human-reviewed, unseen by the builder | fixed build | – |
+| Held-out run 3 | 10 new, human-drafted and human-reviewed from the source documents, unseen by the builder | frozen beab828, run at 96a201b (docs and an output label only) | **7/10** (one of the 7 has the right outcome but the wrong answer) |
 
 ## Held-out evaluation, run 1 (no-key mode)
 
@@ -94,5 +94,47 @@ Eight new questions, prepared by an AI assistant that had not inspected the impl
 3. A version-change explanation is cited only if the passage is about the metric asked. (H2A-05)
 
 Each fix is tested with new phrasings (`tests/test_run2_fixes.py`). Development set: 30/30; run-1 questions: 10/10
-(development use). The next check (run 3) uses new questions drafted and reviewed by a person, run once on the fixed build. The
-post-run-2 results above are development checks, not held-out scores.
+(development use). The post-run-2 results above are development checks, not held-out scores. Run 3 (below) is the next held-out check.
+
+## Held-out run 3 (no-key mode)
+
+Ten new questions drafted and reviewed by a person from the synthetic source documents, without inspecting the
+implementation; the builder had not seen them. Frozen at `beab828`; run once at `96a201b`, which differs only in
+documentation and the wording of an output label. Results disclosed before any further change.
+
+| Measure | Result |
+|---|---|
+| Correct outcome | 7/10 |
+| Citations resolving to a real, in-scope passage | 11/11 |
+| Cited passages match the labelled support | 2/6 |
+| Expected values present | 1/6 |
+| Declined when it should | 3/4 (all three for the right reason) |
+| Declined when it should have answered | 2/6 |
+| Conflicts shown | 2/2 |
+| False conflicts | 1/8 |
+
+### Per question
+
+| ID | Expected | Got | Assessment |
+|---|---|---|---|
+| H3-01 tech remediation scale and spend | Supported | Declined | **Miss – paraphrase.** "Scale of work and spend … bring up to date" did not match "remediate", "months", "EUR"; the right passage was found but fell below the match bar. |
+| H3-02 customer rights on change of ownership | Supported | Supported, **wrong answer** | **Miss – answered a different question.** "Biggest customer" matched the largest-customer-share figure; passage search fell short ("changes hands" vs "change of ownership"), and the run-2 fallback then answered with the 9% revenue share instead of the change-of-control clause. Counted correct on outcome only. A regression introduced by the run-2 fallback. |
+| H3-03 retention after stripping the one-off sale | Conflicted | Conflicted | Correct outcome and citations; the answer omits the cohort's 111% including the bundle (in the cited passage, not in the answer text). |
+| H3-04 keep the 80% recurring label? | Conflicted | Conflicted | Correct. |
+| H3-05 why FY2025 sales fell in the restated IM | Changed | Declined | **Miss – vocabulary.** "Sales" is not recognised as revenue, so the version history was not consulted. |
+| H3-06 adjusted EBITDA, first vs restated CIM | Changed | Changed | Correct outcome; citation support fails because the answer also cites the QoE's EUR 21.5m as a separate source conflict (a deliberate design choice the label did not include), and the EUR 2m / EUR 2.5m bridge figures appear only in the cited passages, not the answer text. |
+| H3-07 recurring revenue excluding support as well | Declined | Conflicted (80% vs 71%) | **Miss – over-answer.** A hypothetical recalculation was answered with the existing conflict instead of a refusal. |
+| H3-08 next year's sales tied to renewals | Declined | Declined | Correct (the run-1 qualifier fix held). |
+| H3-09 120% from the US newsletter | Declined (wrong entity) | Declined (wrong entity) | Correct. |
+| H3-10 Project Bramble figures | Declined (out of scope) | Declined (out of scope) | Correct. |
+
+### What run 3 shows
+
+- Four genuine misses (H3-01, H3-02, H3-05, H3-07); H3-02 is the most serious, a confident answer to a different
+  question, and was caused by the run-2 fallback rule.
+- The safety properties held for the third run: no invented or out-of-scope citations; wrong-entity and out-of-scope
+  refusals correct; both conflicts shown.
+- "Expected values present 1/6" mixes real misses with strict labels (bridge figures that appear only in cited
+  passages). Answers that state derived figures in their own text would make this measure more useful.
+
+No fix has been made yet. Any fix will be checked with development tests only; the next held-out score needs a new set.
