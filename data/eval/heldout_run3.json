@@ -1,0 +1,169 @@
+{
+  "note": "Fresh Run 3 held-out set. Questions were written from the synthetic source documents without inspecting the implementation. Author: AI assistant, not an independent human reviewer. Freeze the implementation and configuration, record the commit, run once, and report every question and miss by type. Do not tune to this set and present its score as held out. Small prototype challenge, not investment-grade validation.",
+  "frozen_code": "beab8289bb4a74b7ffc3ce7373d47a00853f4287",
+  "status": "PENDING: run once on the frozen commit above; disclose the results and miss analysis before making further changes.",
+  "questions": [
+    {
+      "id": "H3-01",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "What scale of work and spend does the technology review expect to bring the unsupported framework code up to date?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-TECH@v1#p3"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "About 38% of the codebase is on an unsupported framework version; remediation is estimated at 18–24 months and EUR 3–4m. The latest penetration test found no critical issues.",
+      "expected_values": [
+        0.38,
+        18.0,
+        24.0,
+        3.0,
+        4.0
+      ],
+      "author": "AI assistant (source-document based; implementation not inspected)"
+    },
+    {
+      "id": "H3-02",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "If the company changes hands, what can its biggest customer do under the contract, and how much notice applies?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-LEGAL@v1#p1"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "The largest customer can terminate after a change of ownership by giving 90 days' notice.",
+      "expected_values": [
+        90.0
+      ],
+      "author": "AI assistant (source-document based; implementation not inspected)"
+    },
+    {
+      "id": "H3-03",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "Once the one-off telematics sale is stripped out, do the retention figures from management and the cohort work agree?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p4",
+        "LARK-MP@v1#p1",
+        "LARK-COHORT@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "No. Management reports 112% NRR on its year-end ARR basis; cohort analysis gives 104% excluding the one-off bundle and 111% including it on recognised revenue. The difference reflects the measurement basis.",
+      "expected_values": [
+        1.12,
+        1.04,
+        1.11
+      ],
+      "author": "AI assistant (source-document based; implementation not inspected)"
+    },
+    {
+      "id": "H3-04",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "Can we keep the 80% recurring-revenue label after the QoE treatment of implementation and training fees?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p2",
+        "LARK-QOE@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "The figures differ by definition: management reports 80%, including the fees, while the draft QoE treats EUR 8m of implementation and training fees as non-recurring and calculates 71%.",
+      "expected_values": [
+        0.8,
+        0.71,
+        8.0
+      ],
+      "author": "AI assistant (source-document based; implementation not inspected)"
+    },
+    {
+      "id": "H3-05",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "Why did the seller's FY2025 sales number fall in the restated information memorandum, and what figure replaced it?",
+      "expected_status": "CHANGED",
+      "expected_passages": [
+        "LARK-CIM@v1#p2",
+        "LARK-CIM@v2#p1",
+        "LARK-CIM@v2#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "The second CIM removes hardware pass-through (telematics devices resold at cost) and restates FY2025 revenue from EUR 92m to EUR 88m.",
+      "expected_values": [
+        92.0,
+        88.0
+      ],
+      "author": "AI assistant (source-document based; implementation not inspected)"
+    },
+    {
+      "id": "H3-06",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "Track the adjusted EBITDA stated in the first CIM and the restated CIM. What changed?",
+      "expected_status": "CHANGED",
+      "expected_passages": [
+        "LARK-CIM@v1#p3",
+        "LARK-CIM@v2#p3"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "Adjusted EBITDA falls from EUR 26m in the first CIM to EUR 24m in the restated CIM, which attributes the EUR 2m reduction to the margin on hardware removed from revenue. Both figures include EUR 2.5m of planned office savings.",
+      "expected_values": [
+        26.0,
+        24.0,
+        2.0,
+        2.5
+      ],
+      "author": "AI assistant (source-document based; implementation not inspected)"
+    },
+    {
+      "id": "H3-07",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "How much recurring revenue remains if support revenue as well as implementation and training fees are excluded?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "The documents do not quantify recurring revenue after excluding support as well as implementation and training fees; the QoE only quantifies the implementation and training adjustment.",
+      "author": "AI assistant (source-document based; implementation not inspected)",
+      "expected_reason": "no_evidence"
+    },
+    {
+      "id": "H3-08",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "How much of next year's sales is already tied to customer contracts due for renewal?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "The supplied documents do not provide a forward renewal schedule or the amount of revenue due for renewal next year.",
+      "author": "AI assistant (source-document based; implementation not inspected)",
+      "expected_reason": "no_evidence"
+    },
+    {
+      "id": "H3-09",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "A US logistics-data newsletter cites 120% retention for Larkspur Analytics. Can that figure support the retention case for D-LARK?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "No. Larkspur Analytics Inc. is a separate US logistics-data company; its reported figure is not evidence about the Larkspur fleet-software target.",
+      "author": "AI assistant (source-document based; implementation not inspected)",
+      "expected_reason": "wrong_entity"
+    },
+    {
+      "id": "H3-10",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "What FY2025 revenue and adjusted EBITDA does Project Bramble report?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "That asks about Project Bramble, not D-LARK; it is outside the current deal’s evidence scope.",
+      "author": "AI assistant (source-document based; implementation not inspected)",
+      "expected_reason": "out_of_scope"
+    }
+  ]
+}

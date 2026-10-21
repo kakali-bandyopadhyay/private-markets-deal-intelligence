@@ -1,5 +1,5 @@
 {
-  "note": "Held-out set: written by a reviewer who had not seen the rules. Protocol: freeze the code, record the commit, run once, report by question type with misses and reasons. Do not tune to this set and then present the same score as held out. Questions H01–H10 written by the reviewer; expected passages labelled from the documents before the run.",
+  "note": "Held-out set (run 1): AI-drafted and reviewed by the owner (informed by earlier development-set misses). Protocol: freeze the code, record the commit, run once, report by question type with misses and reasons. Do not tune to this set and then present the same score as held out. Questions H01–H10; expected passages labelled from the documents before the run.",
   "questions": [
     {
       "id": "H01",
@@ -12,7 +12,7 @@
       ],
       "acceptable_passages": [],
       "expected_answer": "A customer estimated switching would take six to nine months because Larkspur is integrated with its telematics and parts systems.",
-      "author": "reviewer"
+      "author": "AI-drafted, owner-reviewed"
     },
     {
       "id": "H02",
@@ -25,7 +25,7 @@
       ],
       "acceptable_passages": [],
       "expected_answer": "Management points to predictive maintenance and price increases, including a planned 6% list-price increase in 2027.",
-      "author": "reviewer"
+      "author": "AI-drafted, owner-reviewed"
     },
     {
       "id": "H03",
@@ -40,7 +40,7 @@
       ],
       "acceptable_passages": [],
       "expected_answer": "Management reports NRR of 112%; the cohort analysis reports 104% excluding the bundle and 111% including it.",
-      "author": "reviewer",
+      "author": "AI-drafted, owner-reviewed",
       "expected_values": [
         1.12,
         1.04
@@ -58,7 +58,7 @@
       ],
       "acceptable_passages": [],
       "expected_answer": "Management presents 80% of revenue as recurring; the QoE classifies EUR 8m of implementation and training fees as non-recurring, giving 71%.",
-      "author": "reviewer",
+      "author": "AI-drafted, owner-reviewed",
       "expected_values": [
         0.8,
         0.71
@@ -79,7 +79,7 @@
         "LARK-QOE@v1#p1"
       ],
       "expected_answer": "The revised IM excludes hardware pass-through and restates revenue from EUR 92m to EUR 88m.",
-      "author": "reviewer",
+      "author": "AI-drafted, owner-reviewed",
       "expected_values": [
         92.0,
         88.0
@@ -100,7 +100,7 @@
         "LARK-QOE@v1#p3"
       ],
       "expected_answer": "No. Adjusted EBITDA changed from EUR 26m in v1 to EUR 24m in v2.",
-      "author": "reviewer",
+      "author": "AI-drafted, owner-reviewed",
       "expected_values": [
         26.0,
         24.0
@@ -115,7 +115,7 @@
       "expected_passages": [],
       "acceptable_passages": [],
       "expected_answer": "The documents provided do not state Larkspur’s net debt.",
-      "author": "reviewer",
+      "author": "AI-drafted, owner-reviewed",
       "expected_reason": "no_evidence"
     },
     {
@@ -127,7 +127,7 @@
       "expected_passages": [],
       "acceptable_passages": [],
       "expected_answer": "The documents do not provide a forward renewal schedule or contracted revenue figure.",
-      "author": "reviewer",
+      "author": "AI-drafted, owner-reviewed",
       "expected_reason": "no_evidence"
     },
     {
@@ -139,7 +139,7 @@
       "expected_passages": [],
       "acceptable_passages": [],
       "expected_answer": "No. The 120% figure belongs to an unrelated US company, Larkspur Analytics Inc.",
-      "author": "reviewer",
+      "author": "AI-drafted, owner-reviewed",
       "expected_reason": "wrong_entity"
     },
     {
@@ -151,10 +151,11 @@
       "expected_passages": [],
       "acceptable_passages": [],
       "expected_answer": "The documents do not establish how many customers would accept a 6% increase; one customer said it would review alternatives above about 5%.",
-      "author": "reviewer",
+      "author": "AI-drafted, owner-reviewed",
       "expected_reason": "no_evidence"
     }
   ],
   "frozen_code": "9cb20c6 (questions added without any code or rule change)",
-  "status": "USED. Run 1 at code 9cb20c6: 4/10 (the published held-out result). The causes were then fixed, so these questions are now development questions; a new held-out set is needed for run 2."
+  "status": "USED. Run 1 at code 9cb20c6: 4/10 (the published held-out result). The causes were then fixed, so these questions are now development questions; a new held-out set is needed for run 2.",
+  "authorship": "AI-drafted and reviewed by the owner (informed by earlier development-set misses)"
 }

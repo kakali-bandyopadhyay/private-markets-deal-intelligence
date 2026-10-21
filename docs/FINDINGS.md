@@ -5,12 +5,13 @@ Run log (each run once, on a frozen build; scores are reported separately and ne
 | Run | Questions | Code | Result |
 |---|---|---|---|
 | Development | 30, written alongside the rules | – | 30/30 (optimistic) |
-| Held-out run 1 | 10, reviewer-written | 9cb20c6, run at 2f722ee (questions added, no code change) | **4/10** |
-| Held-out run 2 | 8 new, reviewer-written, unseen by the builder | 197d4b1 | **6/8** |
+| Held-out run 1 | 10, AI-drafted and reviewed by the owner (informed by earlier development-set misses) | 9cb20c6, run at 2f722ee (questions added, no code change) | **4/10** |
+| Held-out run 2 | 8 new, prepared by an AI assistant that had not inspected the implementation; unseen by the builder | 197d4b1 | **6/8** |
+| Held-out run 3 (planned) | new, human-drafted and human-reviewed, unseen by the builder | fixed build | – |
 
 ## Held-out evaluation, run 1 (no-key mode)
 
-Ten questions written by a reviewer who had not seen the rules, phrased the way a deal team would ask. Expected
+Ten questions, AI-drafted and reviewed by the owner (informed by earlier development-set misses), phrased the way a deal team would ask; the builder had not seen them before the run. Expected
 passages were labelled from the documents before the run. Code frozen at the commit recorded in `data/eval/heldout.json`;
 questions added with no code or rule change; run once. Small set – not investment-grade validation.
 
@@ -57,15 +58,15 @@ were written for.
 
 All five actions were applied (`tests/test_run1_fixes.py` tests each with new phrasings). Re-running the run-1 questions
 now gives 10/10 and the development set stays 30/30 – but the run-1 questions were used to find the causes, so this is
-no longer a held-out result. **The published held-out result remains run 1: 4/10.** Run 2 uses new questions written by
-someone who has not seen the code, run once against the frozen build, with the commit recorded.
+no longer a held-out result. **The published held-out result remains run 1: 4/10.** Run 2 uses new questions prepared
+without access to the code, run once against the frozen build, with the commit recorded.
 
 Stopgaps to note: the synonym list and the qualifier and population word lists are small and hand-written; they fix the
 observed causes, not paraphrase in general. Embeddings remain the tested alternative (T2).
 
 ## Held-out run 2 (no-key mode)
 
-Eight new questions written by a reviewer; the builder had not seen them. Run once on frozen build `197d4b1`.
+Eight new questions, prepared by an AI assistant that had not inspected the implementation; the builder had not seen them. Run once on frozen build `197d4b1`.
 
 | Measure | Result |
 |---|---|
@@ -93,4 +94,5 @@ Eight new questions written by a reviewer; the builder had not seen them. Run on
 3. A version-change explanation is cited only if the passage is about the metric asked. (H2A-05)
 
 Each fix is tested with new phrasings (`tests/test_run2_fixes.py`). Development set: 30/30; run-1 questions: 10/10
-(development use). The next unbiased check needs a new held-out set on the fixed build.
+(development use). The next check (run 3) uses new questions drafted and reviewed by a person, run once on the fixed build. The
+post-run-2 results above are development checks, not held-out scores.

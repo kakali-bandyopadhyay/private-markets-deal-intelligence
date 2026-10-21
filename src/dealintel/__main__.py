@@ -126,7 +126,7 @@ def main(argv: list[str] | None = None) -> int:
         name = "eval_heldout" if held else "eval_results"
         out = Path(a.out or f"out/{name}{'_model' if a.model else ''}.md")
         mode += f" mode, code at commit {ev.commit()}"
-        label = (f"Held-out set of {len(qs)} questions written by a reviewer who had not seen the rules; run once, "
+        label = (f"Held-out set of {len(qs)} questions not seen by the builder (authorship recorded in the question file); run once, "
                  "rules not tuned to it. Small set – not investment-grade validation." if held else None)
         md = ev.as_markdown(res, mode, label)
         out.parent.mkdir(parents=True, exist_ok=True)

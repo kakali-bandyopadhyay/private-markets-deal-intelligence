@@ -96,14 +96,15 @@ similarly named, unrelated company, or a figure that belongs to one) or `out_of_
 the active deal) – kept separate from CONFLICTED, which means relevant sources disagree about the same target fact.
 
 The rules were developed alongside this set, so its results are optimistic. `data/eval/heldout.json` holds questions
-written by a reviewer who had not seen the rules; protocol: freeze the code, record the commit, run once
+prepared without access to the rules (authorship per run in `docs/FINDINGS.md`); protocol: freeze the code, record the commit, run once
 (`python -m dealintel eval --questions data/eval/heldout.json`), report by question type with misses and reasons, and
 do not tune to it afterwards.
 
 **Held-out results, reported separately:** run 1 – 4/10 correct outcomes (12/12 citations resolved; two answers that
 should have been refusals); run 2, new unseen questions after fixing run 1's causes – 6/8 (12/12 citations resolved;
-one false conflict, one missed conflict, one unsupported citation). Misses, causes and fixes are in `docs/FINDINGS.md`;
-the next unbiased check needs a new held-out set.
+one false conflict, one missed conflict, one unsupported citation). Run 1 questions were AI-drafted and reviewed by the
+owner; run 2 questions were prepared by an AI assistant that had not inspected the implementation. Misses, causes and
+fixes are in `docs/FINDINGS.md`; run 3 will use human-drafted, human-reviewed questions.
 
 ## Repository map
 
