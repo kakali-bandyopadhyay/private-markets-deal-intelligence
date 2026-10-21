@@ -22,7 +22,15 @@ from .search import search, tokens
 
 SUPPORTED, CONFLICTED, CHANGED, INSUFFICIENT = "SUPPORTED", "CONFLICTED", "CHANGED", "INSUFFICIENT"
 CHANGE_WORDS = re.compile(r"\b(chang(?!e[\s-]of[\s-]control)\w*|restat\w*|revis\w*|previous\w*|first issue|second issue|first (information )?memorandum|"
-                          r"second (information )?memorandum|earlier version|new version)\b")
+                          r"second (information )?memorandum|earlier version|new version|updat\w*|latest version|stay the same|"
+                          r"first cim|second cim)\b")
+# a figure question narrower than the tagged facts (forward-looking, contracted, a different granularity or segment)
+QUALIFIERS = re.compile(r"\b(next year|forecast\w*|project(ed|ion)s?|budget\w*|guidance|contracted|backlog|to renew|"
+                        r"renewals?|run[- ]rate|monthly|quarterly|per customer|by (segment|country|region|product)|"
+                        r"pipeline)\b")
+# a question about the customer population, which one interview cannot answer
+POPULATION = re.compile(r"\b(share|percentage|proportion|how many|most|majority|what portion) of (the |our |its )?"
+                        r"(\w+['’]?s? )?customers\b")
 NUM = re.compile(r"(?:usd|eur|\$|€)?\s?(\d+(?:\.\d+)?)\s?(%|m\b|bn\b)")
 MIN_MATCHED, MIN_COVERAGE = 2, 0.5
 
@@ -118,6 +126,13 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
     if found and not text_hit:
         metric = found[0][0]
         res["metric"] = metric
+        qual = QUALIFIERS.search(q)
+        if qual:
+            res["reason"] = "no_evidence"
+            res["notes"].append(f"sourced {ctx['metrics'][metric]['name'].lower()} figures are reported totals; "
+                                f"none is \"{qual.group(0)}\"")
+            return _done(res, INSUFFICIENT, f"No sourced figure answers this: the documents give "
+                                            f"{ctx['metrics'][metric]['name'].lower()} as reported, not \"{qual.group(0)}\".")
         live = [f for f in active_facts(ctx, company, as_of) if f["metric"] == metric and (not period or f["period"] == period)]
         live_docs = active_docs(ctx, as_of)
         old = [f for f in ctx["facts"] if f["company"] == company and f["metric"] == metric
@@ -162,6 +177,27 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
         return _done(res, INSUFFICIENT, "No passage in this deal's live documents answers this.")
     top = good[0]
     cls = ctx["passages"][top["passage"]]["evidence_class"]
+    if POPULATION.search(q) and cls == "expert-call claim":
+        res["reason"] = "no_evidence"
+        res["notes"].append(f"{top['passage']} is one expert call: a lead about one customer, not an answer about the "
+                            "customer base; not cited")
+        return _done(res, INSUFFICIENT, "No source measures this across customers; one interview is a lead to test, "
+                                        "not an answer.")
+    # a passage that carries a tagged figure, or a question naming a metric, still goes through the conflict check
+    from .conflicts import detect
+    metrics = [m for m, _ in found] + [f["metric"] for f in ctx["facts"] if f["passage"] == top["passage"]]
+    live = active_facts(ctx, company, as_of)
+    for c in detect(ctx, company, as_of):
+        if c["metric"] in metrics and (not period or c["period"] == period):
+            fs = [f for f in live if f["metric"] == c["metric"] and f["period"] == c["period"]]
+            res["metric"] = c["metric"]
+            res["claims"] = _value_claims(ctx, c["metric"], fs, "current") + [
+                {"text": ctx["passages"][top["passage"]]["text"], "passage_ids": [top["passage"]], "role": "context",
+                 "evidence_class": cls}]
+            res["notes"].append(f"the passage found touches {ctx['metrics'][c['metric']]['name'].lower()}, on which "
+                                "live sources disagree; all values shown")
+            return _done(res, CONFLICTED, "Sources disagree; no value is picked. "
+                         + _summary([x for x in res["claims"] if x["role"] == "current"]))
     res["claims"] = [{"text": ctx["passages"][top["passage"]]["text"], "passage_ids": [top["passage"]], "role": "quote",
                       "evidence_class": cls}]
     res["notes"].append(f"evidence class: {cls}" + (" – a lead to verify, not an established fact" if cls == "expert-call claim" else ""))

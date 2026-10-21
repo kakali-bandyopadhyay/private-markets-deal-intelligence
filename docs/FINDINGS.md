@@ -35,7 +35,7 @@ were written for.
 | H06 | EBITDA same in the updated CIM? | Changed | Conflicted (24 vs 21.5) | "Updated" and "CIM" are not in the change vocabulary; the version history was not consulted. |
 | H02 | Management's main levers for growth? | Supported | Declined | Vocabulary gap ("levers", "growing" vs "growth", "price increase"); keyword search without stemming or synonyms. |
 
-### Actions (not yet applied; any fix is re-measured on a new held-out set, not this one)
+### Actions (applied after run 1; re-measured on a new held-out set, not this one)
 
 1. A figure answer must match the question's qualifiers (period, forward-looking, contracted, by segment); if not,
    decline as `no_evidence`. (H08)
@@ -44,3 +44,13 @@ were written for.
    as a lead only. (H10)
 4. Widen the change vocabulary (updated, latest, CIM) and use version history whenever a superseded value exists. (H06)
 5. Test synonym expansion or embeddings for paraphrased questions (trade-off T2's trigger). (H02)
+
+## After the fixes
+
+All five actions were applied (`tests/test_run1_fixes.py` tests each with new phrasings). Re-running the run-1 questions
+now gives 10/10 and the development set stays 30/30 – but the run-1 questions were used to find the causes, so this is
+no longer a held-out result. **The published held-out result remains run 1: 4/10.** Run 2 uses new questions written by
+someone who has not seen the code, run once against the frozen build, with the commit recorded.
+
+Stopgaps to note: the synonym list and the qualifier and population word lists are small and hand-written; they fix the
+observed causes, not paraphrase in general. Embeddings remain the tested alternative (T2).

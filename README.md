@@ -101,7 +101,7 @@ written by a reviewer who had not seen the rules; protocol: freeze the code, rec
 do not tune to it afterwards.
 
 **Held-out result, run 1: 4/10 correct outcomes, 12/12 valid citations, two answers that should have been refusals.**
-The misses and their causes are in `docs/FINDINGS.md`.
+The misses, their causes and the fixes are in `docs/FINDINGS.md`; run 2 uses a new held-out set.
 
 ## Repository map
 

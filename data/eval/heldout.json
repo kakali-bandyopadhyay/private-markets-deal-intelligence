@@ -155,5 +155,6 @@
       "expected_reason": "no_evidence"
     }
   ],
-  "frozen_code": "9cb20c6 (questions added without any code or rule change)"
+  "frozen_code": "9cb20c6 (questions added without any code or rule change)",
+  "status": "USED. Run 1 at code 9cb20c6: 4/10 (the published held-out result). The causes were then fixed, so these questions are now development questions; a new held-out set is needed for run 2."
 }
