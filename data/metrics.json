@@ -5,7 +5,8 @@
     "aliases": [
       "revenue",
       "turnover",
-      "top line"
+      "top line",
+      "sales"
     ]
   },
   "recurring_revenue_share": {
@@ -51,8 +52,10 @@
     "name": "Largest customer share of revenue",
     "unit": "%",
     "aliases": [
-      "largest customer",
-      "biggest customer"
+      "largest customer share",
+      "biggest customer share",
+      "share of the largest customer",
+      "largest customer accounts for"
     ]
   },
   "gross_logo_churn": {

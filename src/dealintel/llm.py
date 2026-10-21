@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import os
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -39,6 +40,10 @@ Keep each claim to one sentence."""
 
 
 class BudgetExceeded(RuntimeError):
+    pass
+
+
+class ModelError(RuntimeError):
     pass
 
 
@@ -127,9 +132,18 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None, *, 
     payload = {"model": cfg["model"], "instructions": INSTRUCTIONS, "input": user,
                "max_output_tokens": cfg["max_output_tokens"], "reasoning": {"effort": cfg.get("reasoning_effort", "low")},
                "text": {"format": {"type": "json_schema", "name": "cited_answer", "schema": SCHEMA, "strict": True}}}
-    resp = client(payload)
+    try:
+        resp = client(payload)
+    except urllib.error.HTTPError as e:  # report the API's message, never the request (it carries the key)
+        detail = e.read().decode("utf-8", "replace")[:300]
+        raise ModelError(f"API returned HTTP {e.code}: {detail}") from None
     budget.record(resp.get("usage", {}))
-    out = json.loads(_output_text(resp))
+    try:
+        out = json.loads(_output_text(resp))
+    except (ValueError, KeyError) as e:
+        res["reason"] = "model_error"
+        res["notes"].append(f"model output could not be read ({type(e).__name__}); answer withheld")
+        return _done(res, qa.INSUFFICIENT, "Model output could not be read; answer withheld.")
     kept, rejected = qa.validate_citations(ctx, deal_id, as_of, out["claims"], allowed={p["id"] for p in pack})
     res["claims"] = [{**c, "role": "model"} for c in kept]
     res["rejected"] = rejected

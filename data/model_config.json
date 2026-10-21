@@ -4,7 +4,7 @@
   "model": "gpt-5.4-mini-2026-03-17",
   "price_usd_per_1m_input": 0.75,
   "price_usd_per_1m_output": 4.50,
-  "max_output_tokens": 800,
+  "max_output_tokens": 1200,
   "reasoning_effort": "low",
   "max_cost_usd_per_run": 0.50,
   "timeout_s": 60

@@ -13,7 +13,7 @@ from .data import active_docs
 STOP = set("""a an and are as at be by did do does for from has have how in is it its of on or our the their this to was
 were what when where which who why will with than that these those there any we us vs versus say said says about into
 after before over under per also more most much many current currently company business project
-main here now look like would should could get make""".split())
+main here now look like would should could get make can up bring""".split())
 
 
 # Small domain synonym list for query terms (a stopgap for paraphrases; embeddings are the tested alternative - see
@@ -23,6 +23,8 @@ SYNONYMS = {
     "lever": ["plan", "driver"], "driver": ["plan", "lever"],
     "sticky": ["switching", "churn", "retention"], "stickiness": ["switching", "churn", "retention"],
     "risk": ["red", "flag"], "issue": ["finding"],
+    "biggest": ["largest"], "hand": ["ownership", "control"], "spend": ["eur", "cost"], "cost": ["eur", "spend"],
+    "expect": ["estimate"], "code": ["codebase"], "fix": ["remediate"], "remediation": ["remediate"],
 }
 
 

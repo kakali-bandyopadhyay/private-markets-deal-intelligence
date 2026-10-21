@@ -28,6 +28,9 @@ CHANGE_WORDS = re.compile(r"\b(chang(?!e[\s-]of[\s-]control)\w*|restat\w*|revis\
 QUALIFIERS = re.compile(r"\b(next year|forecast\w*|project(ed|ion)s?|budget\w*|guidance|contracted|backlog|to renew|"
                         r"renewals?|run[- ]rate|monthly|quarterly|per customer|by (segment|country|region|product)|"
                         r"pipeline)\b")
+# a hypothetical recalculation the documents do not perform ("how much remains if X is also excluded")
+# ("if we strip out the one-off bundle" is not here: that adjusted basis is often one the documents state)
+HYPOTHETICAL = re.compile(r"\b(remains? if|left if|would (it|they|the \w+) be if|what would|assuming|suppose)\b")
 # a question about the customer population, which one interview cannot answer
 POPULATION = re.compile(r"\b(share|percentage|proportion|how many|most|majority|what portion) of (the |our |its )?"
                         r"(\w+['’]?s? )?customers\b")
@@ -116,6 +119,14 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
     aliases = {a: k for k, v in ctx["metrics"].items() for a in v["aliases"]}
     found = _find(q, aliases)
     change = bool(CHANGE_WORDS.search(q))
+    hyp = HYPOTHETICAL.search(q)
+    if found and hyp:
+        name = ctx["metrics"][found[0][0]]["name"].lower()
+        res["metric"], res["reason"] = found[0][0], "no_evidence"
+        res["notes"].append(f"\"{hyp.group(0)}\" asks for a recalculation the documents do not give; sourced {name} "
+                            "figures exist only on the bases stated in them")
+        return _done(res, INSUFFICIENT, "No source gives the figure on that adjusted basis; the system does not "
+                                        "recalculate it.")
 
     text_hit = None
     if found:
@@ -128,6 +139,13 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
     def figure(metric: str) -> dict:
         """Answer from tagged facts: qualifier check, then version history, then conflicts."""
         res["metric"] = metric
+        hyp = HYPOTHETICAL.search(q)
+        if hyp:
+            res["reason"] = "no_evidence"
+            res["notes"].append(f"\"{hyp.group(0)}\" asks for a recalculation the documents do not give; sourced "
+                                f"{ctx['metrics'][metric]['name'].lower()} figures exist only on the bases stated in them")
+            return _done(res, INSUFFICIENT, "No source gives the figure on that adjusted basis; the system does not "
+                                            "recalculate it.")
         qual = QUALIFIERS.search(q)
         if qual:
             res["reason"] = "no_evidence"

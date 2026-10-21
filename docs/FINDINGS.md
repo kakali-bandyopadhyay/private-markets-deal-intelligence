@@ -137,4 +137,23 @@ documentation and the wording of an output label. Results disclosed before any f
 - "Expected values present 1/6" mixes real misses with strict labels (bridge figures that appear only in cited
   passages). Answers that state derived figures in their own text would make this measure more useful.
 
-No fix has been made yet. Any fix will be checked with development tests only; the next held-out score needs a new set.
+### Fixes (applied after run 3; run 3 is not re-scored)
+
+1. "Largest customer" alone no longer means the largest-customer revenue share; the figure is used only when the
+   question asks for a share ("largest customer share", "largest customer accounts for"). (H3-02)
+2. A hypothetical recalculation ("how much remains if …", "what would … be if …", "assuming …") is declined: the
+   system does not recalculate figures on bases the documents do not give. A basis the documents state ("if we strip
+   out the one-off bundle") is still answered. (H3-07)
+3. "Sales" is read as revenue (a forward-looking "sales pipeline" is still declined by the qualifier rule). (H3-05)
+4. A few more synonyms and filler words (biggest → largest, spend/cost → EUR, expect → estimate, code → codebase).
+   A stopgap, not paraphrase handling in general. (H3-01)
+
+Tests with new phrasings: `tests/test_run3_fixes.py`. A paraphrase such as "if the owner sells, can the top customer
+walk away?" is now declined rather than answered with the wrong figure – a safe miss, not a solved one.
+
+Development checks after the fixes (not held-out scores): development set 30/30; run-1, run-2 and run-3 questions all
+answered with the correct outcome. Remaining label differences on run 3: H3-05 and H3-06 also cite the QoE as an
+agreeing or separate source, and H3-03 does not repeat the cohort's 111% in its answer text.
+
+Changing the metric vocabulary changed the memo's rendered evidence fingerprint, so the synthetic IC decision record was
+re-confirmed against the new memo version; the metric vocabulary is now outside the evidence fingerprint.

@@ -13,9 +13,10 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 
 
-# not evidence: the IC decision record (it points at the memo), model settings, value assumptions and every evaluation
+# not evidence: the IC decision record (it points at the memo), model settings, value assumptions, the metric
+# vocabulary (search aliases; names and units still reach the memo through its rendered text) and every evaluation
 # file - adding a question set must never change the memo fingerprint
-NOT_EVIDENCE = frozenset({"ic_decisions.json", "model_config.json", "value_assumptions.json", "eval/"})
+NOT_EVIDENCE = frozenset({"ic_decisions.json", "model_config.json", "value_assumptions.json", "metrics.json", "eval/"})
 
 
 def _read(path: Path) -> dict:

@@ -92,3 +92,11 @@ def test_key_is_never_committed():
     ignore = (ROOT / ".gitignore").read_text()
     assert ".env" in ignore.splitlines()
     assert (ROOT / ".env.example").read_text().strip().endswith("OPENAI_API_KEY=")
+
+
+def test_unreadable_model_output_is_withheld_not_crashed(ctx):
+    def client(payload):
+        return {"output": [{"type": "message", "content": [{"type": "output_text", "text": "{not json"}]}],
+                "usage": {"input_tokens": 10, "output_tokens": 10}}
+    r = llm.answer(ctx, "D-LARK", "What was gross logo churn?", client=client, budget=budget())
+    assert r["status"] == "INSUFFICIENT" and r["reason"] == "model_error"
