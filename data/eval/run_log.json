@@ -34,7 +34,7 @@
     {
       "run": "Held-out run 3",
       "questions": 10,
-      "authorship": "human-drafted and human-reviewed, unseen by the builder",
+      "authorship": "drafted from the source documents; expected labels reviewed by the owner against those documents before the run; not used to tune the implementation before it",
       "code": "beab828 (run at 96a201b)",
       "mode": "no-key",
       "correct": "7/10 (one right outcome with a wrong answer)",

@@ -7,7 +7,7 @@ Run log (each run once, on a frozen build; scores are reported separately and ne
 | Development | 30, written alongside the rules | – | 30/30 (optimistic) |
 | Held-out run 1 | 10, AI-drafted and reviewed by the owner (informed by earlier development-set misses) | 9cb20c6, run at 2f722ee (questions added, no code change) | **4/10** |
 | Held-out run 2 | 8 new, prepared by an AI assistant that had not inspected the implementation; unseen by the builder | 197d4b1 | **6/8** |
-| Held-out run 3 | 10 new, human-drafted and human-reviewed from the source documents, unseen by the builder | frozen beab828, run at 96a201b (docs and an output label only) | **7/10** (one of the 7 has the right outcome but the wrong answer) |
+| Held-out run 3 | 10 new, drafted from the source documents; expected labels reviewed by the owner against those documents before the run; not used to tune the implementation before it | frozen beab828, run at 96a201b (docs and an output label only) | **7/10** (one of the 7 has the right outcome but the wrong answer) |
 
 ## Held-out evaluation, run 1 (no-key mode)
 
@@ -98,8 +98,9 @@ Each fix is tested with new phrasings (`tests/test_run2_fixes.py`). Development 
 
 ## Held-out run 3 (no-key mode)
 
-Ten new questions drafted and reviewed by a person from the synthetic source documents, without inspecting the
-implementation; the builder had not seen them. Frozen at `beab828`; run once at `96a201b`, which differs only in
+Ten new questions drafted from the synthetic source documents without inspecting the implementation; the owner
+reviewed the expected labels against those documents before the run. The questions were not used to tune the
+implementation before the run; the fixes made afterwards were informed by its misses, so run 3 is not re-scored. Frozen at `beab828`; run once at `96a201b`, which differs only in
 documentation and the wording of an output label. Results disclosed before any further change.
 
 | Measure | Result |
