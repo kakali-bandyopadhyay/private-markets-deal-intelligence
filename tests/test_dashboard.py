@@ -15,3 +15,10 @@ def test_dashboard_reports_every_run_separately():
     for run in ("Held-out run 1", "Held-out run 2", "Held-out run 3", "Model mode, development set"):
         assert run in html
     assert "4/10" in html and "7/10" in html
+
+
+def test_committed_dashboard_is_not_stale():
+    """docs/index.html must be regenerated (python -m dealintel dashboard) whenever its inputs change."""
+    from dealintel.data import ROOT
+    on_disk = (ROOT / "docs" / "index.html").read_bytes().decode("utf-8").replace("\r\n", "\n")
+    assert on_disk == dashboard.build(load()), "docs/index.html is stale: run python -m dealintel dashboard"
