@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 
 
-NOT_EVIDENCE = frozenset({"ic_decisions.json", "model_config.json", "questions.json", "value_assumptions.json"})
+NOT_EVIDENCE = frozenset({"ic_decisions.json", "model_config.json", "questions.json", "heldout.json", "value_assumptions.json"})
 
 
 def _read(path: Path) -> dict:

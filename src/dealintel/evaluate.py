@@ -8,7 +8,8 @@ Measures are reported separately and per question:
                     hand-labelled supporting set (a proxy for "the passage supports the claim", only as good as
                     the labels; a column is left for a person's spot check)
   values            every expected value appears in the answer's claims
-  refusal           questions labelled INSUFFICIENT are declined; others are not
+  refusal           questions labelled INSUFFICIENT are declined, for the labelled reason (no_evidence,
+                    wrong_entity, out_of_scope); others are not
   conflict          questions labelled CONFLICTED show the disagreement; others do not invent one
 
 This is a prototype evaluation, not investment-grade validation.
@@ -20,6 +21,16 @@ from pathlib import Path
 
 from . import qa
 from .data import DATA, latest_date
+
+
+def commit() -> str:
+    """The code version the evaluation ran on (for the held-out protocol: freeze, record, run once)."""
+    import subprocess
+    try:
+        return subprocess.run(["git", "rev-parse", "--short", "HEAD"], capture_output=True, text=True,
+                              cwd=DATA.parent, check=True).stdout.strip() or "unknown"
+    except (OSError, subprocess.CalledProcessError):
+        return "unknown"
 
 
 def load_questions(path: Path | None = None) -> list[dict]:
@@ -57,6 +68,8 @@ def score(ctx: dict, q: dict, r: dict) -> dict:
     values = all(_has_value(r["claims"], v) for v in q.get("expected_values", []))
     return {"id": q["id"], "category": q["category"], "deal": q["deal"], "question": q["question"],
             "expected": q["expected_status"], "got": r["status"], "status_ok": r["status"] == q["expected_status"],
+            "expected_reason": q.get("expected_reason"), "got_reason": r.get("reason"),
+            "reason_ok": q.get("expected_reason") is None or r.get("reason") == q["expected_reason"],
             "citations": cites, "citation_valid": valid, "citation_support": support, "values_ok": values,
             "human_check": ""}
 
@@ -77,6 +90,7 @@ def run(ctx: dict, questions: list[dict] | None = None, answer_fn=None) -> dict:
         "citation_support": f"{sum(r['citation_support'] for r in answer_exp)}/{len(answer_exp)} answered questions",
         "expected_values_present": f"{sum(r['values_ok'] for r in answer_exp)}/{len(answer_exp)}",
         "appropriate_refusal": f"{sum(r['got'] == 'INSUFFICIENT' for r in refuse_exp)}/{len(refuse_exp)} declined when they should",
+        "refusal_reason": f"{sum(r['got'] == 'INSUFFICIENT' and r['reason_ok'] for r in refuse_exp)}/{len(refuse_exp)} declined for the right reason",
         "false_refusal": f"{sum(r['got'] == 'INSUFFICIENT' for r in answer_exp)}/{len(answer_exp)} declined when they should not",
         "conflict_detection": f"{sum(r['got'] == 'CONFLICTED' for r in conf_exp)}/{len(conf_exp)} conflicts shown",
         "false_conflicts": f"{sum(r['got'] == 'CONFLICTED' for r in other)}/{len(other)}",
@@ -88,19 +102,20 @@ def run(ctx: dict, questions: list[dict] | None = None, answer_fn=None) -> dict:
     return {"summary": summary, "rows": rows}
 
 
-def as_markdown(res: dict, mode: str = "no-key") -> str:
+def as_markdown(res: dict, mode: str = "no-key", label: str | None = None) -> str:
     s = res["summary"]
-    out = [f"# Prototype evaluation ({mode} mode)", "", f"> {s['label']}", "",
+    out = [f"# Prototype evaluation – {mode}", "", f"> {label or s['label']}", "",
            "| Measure | Result |", "|---|---|"]
     for k in ("status_accuracy", "citation_validity", "citation_support", "expected_values_present",
-              "appropriate_refusal", "false_refusal", "conflict_detection", "false_conflicts"):
+              "appropriate_refusal", "refusal_reason", "false_refusal", "conflict_detection", "false_conflicts"):
         out.append(f"| {k.replace('_', ' ')} | {s[k]} |")
     out += ["", "By category (status and citation support both correct): "
             + ", ".join(f"{k} {v}" for k, v in s["by_category"].items()), "",
-            "| ID | Category | Question | Expected | Got | Citation valid | Citation support | Values | Human check |",
-            "|---|---|---|---|---|---|---|---|---|"]
+            "| ID | Category | Question | Expected | Got | Reason | Citation valid | Citation support | Values | Human check |",
+            "|---|---|---|---|---|---|---|---|---|---|"]
     yn = lambda b: "yes" if b else "**no**"
     for r in res["rows"]:
         out.append(f"| {r['id']} | {r['category']} | {r['question']} | {r['expected']} | {r['got']} | "
+                   f"{(r['got_reason'] or '') + ('' if r['reason_ok'] else ' (expected ' + r['expected_reason'] + ')')} | "
                    f"{yn(r['citation_valid'])} | {yn(r['citation_support'])} | {yn(r['values_ok'])} | {r['human_check']} |")
     return "\n".join(out) + "\n"

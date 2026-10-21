@@ -35,7 +35,7 @@
           "metric": "recurring_revenue_share",
           "value": 0.78,
           "period": "FY2025",
-          "basis": "subscription and support as share of total revenue"
+          "basis": "management definition: includes implementation and training fees billed in subscription invoices"
         }
       ]
     },

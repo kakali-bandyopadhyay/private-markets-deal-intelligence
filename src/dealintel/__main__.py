@@ -51,6 +51,8 @@ def main(argv: list[str] | None = None) -> int:
     s.add_argument("--out")
     s.add_argument("--model", action="store_true", help="optional: evaluate model mode (uses your API key, capped)")
     s.add_argument("--max-cost", type=float, help="USD cap for this run (default in data/model_config.json)")
+    s.add_argument("--questions", help="question file (default data/eval/questions.json); use data/eval/heldout.json "
+                                       "for the held-out set")
     s = sub.add_parser("memo", help="build the IC memo, run the gate and show the recorded human IC decision")
     s.add_argument("deal"); s.add_argument("--out")
     s = sub.add_parser("dashboard", help="write the static dashboard (docs/index.html)")
@@ -111,16 +113,22 @@ def main(argv: list[str] | None = None) -> int:
     elif a.cmd == "eval":
         from pathlib import Path
         from . import evaluate as ev
+        qs = ev.load_questions(Path(a.questions) if a.questions else None)
+        held = bool(a.questions and "heldout" in a.questions)
         if a.model:
             from . import llm
             budget, client = _model(llm, a.max_cost)
-            res = ev.run(ctx, answer_fn=lambda q: llm.answer(ctx, q["deal"], q["question"], q.get("as_of"),
+            res = ev.run(ctx, qs, answer_fn=lambda q: llm.answer(ctx, q["deal"], q["question"], q.get("as_of"),
                                                              client=client, budget=budget))
             mode = f"model {budget.cfg['model']}, {budget.calls} calls, est. ${budget.spent:.4f}"
         else:
-            res, mode = ev.run(ctx), "no-key"
-        out = Path(a.out or ("out/eval_results_model.md" if a.model else "out/eval_results.md"))
-        md = ev.as_markdown(res, mode)
+            res, mode = ev.run(ctx, qs), "no-key"
+        name = "eval_heldout" if held else "eval_results"
+        out = Path(a.out or f"out/{name}{'_model' if a.model else ''}.md")
+        mode += f" mode, code at commit {ev.commit()}"
+        label = (f"Held-out set of {len(qs)} questions written by a reviewer who had not seen the rules; run once, "
+                 "rules not tuned to it. Small set – not investment-grade validation." if held else None)
+        md = ev.as_markdown(res, mode, label)
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(md, encoding="utf-8")
         print(md.split("By category")[0] + f"Per-question table: {out}")

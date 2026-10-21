@@ -4,7 +4,11 @@ Every answer is a list of claims, each with the passage IDs behind it. Outcomes:
   SUPPORTED     one value (or one passage) answers it
   CONFLICTED    live sources disagree - all values are shown, none is picked
   CHANGED       a later document version replaced an earlier value - both are shown, the old one marked superseded
-  INSUFFICIENT  no evidence in this deal's live documents, or the question is about a company outside the deal
+  INSUFFICIENT  not answered, with a reason:
+                  no_evidence   nothing in the deal's live documents answers it
+                  wrong_entity  the name or figure belongs to a similarly named, unrelated company
+                  out_of_scope  the question is about another company that is not in the active deal
+Answers use one active deal scope: documents about other companies exist in the corpus but are out of scope.
 
 The system answers from the deal's documents only. It does not judge which source is right; that is a recorded
 human decision (conflict register), and the investment decision is the IC's.
@@ -18,7 +22,8 @@ from .search import search, tokens
 
 SUPPORTED, CONFLICTED, CHANGED, INSUFFICIENT = "SUPPORTED", "CONFLICTED", "CHANGED", "INSUFFICIENT"
 CHANGE_WORDS = re.compile(r"\b(chang(?!e[\s-]of[\s-]control)\w*|restat\w*|revis\w*|previous\w*|first issue|second issue|first (information )?memorandum|"
-                          r"second (information )?memorandum|earlier version|new version|differ\w*)\b")
+                          r"second (information )?memorandum|earlier version|new version)\b")
+NUM = re.compile(r"(?:usd|eur|\$|€)?\s?(\d+(?:\.\d+)?)\s?(%|m\b|bn\b)")
 MIN_MATCHED, MIN_COVERAGE = 2, 0.5
 
 
@@ -67,10 +72,32 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
 
     names = {a: c["id"] for c in ctx["companies"].values() for a in c["aliases"]}
     others = [c for c, _ in _find(q, names) if c != company]
+    generic = {"project", "inc", "ltd", "group"}
+    target_words = set(" ".join(ctx["companies"][company]["aliases"]).split()) - generic
     if others:
-        nm = ctx["companies"][others[0]]["code_name"]
-        return _done(res, INSUFFICIENT, f"The question is about {nm}, which is outside {deal['name']}'s documents. "
-                                        "Not answered from this deal's evidence.")
+        o = ctx["companies"][others[0]]
+        if target_words & set(" ".join(o["aliases"]).split()):
+            res["reason"] = "wrong_entity"
+            return _done(res, INSUFFICIENT, f"The question is about {o['code_name']}, a different company with a similar "
+                                            f"name to {deal['name']}. Not answered from this deal's evidence.")
+        res["reason"] = "out_of_scope"
+        return _done(res, INSUFFICIENT, f"The question is about {o['code_name']}, which is not in the active deal "
+                                        f"scope ({deal['name']}). Not answered from this deal's evidence.")
+
+    # a figure quoted in the question that no target passage contains, but another company's passage does
+    in_scope = [p for p in ctx["passages"].values() if p["deal"] == deal_id and p["date"] <= as_of]
+    for num, unit in NUM.findall(q):
+        tok = (num, unit)
+        if any(tok in NUM.findall(p["text"].lower()) for p in in_scope):
+            continue
+        elsewhere = [p for p in ctx["passages"].values() if p["company"] not in (company, None)
+                     and tok in NUM.findall(p["text"].lower())]
+        if elsewhere:
+            o = ctx["companies"][elsewhere[0]["company"]]
+            res["reason"] = "wrong_entity"
+            res["notes"].append(f"{num}{unit} appears only in {elsewhere[0]['doc']}, about {o['code_name']}")
+            return _done(res, INSUFFICIENT, f"No source for {deal['name']} gives {num}{unit}; that figure belongs to "
+                                            f"{o['code_name']}, a different company. Not answered from this deal's evidence.")
 
     period = None
     m = re.search(r"\bfy\s?(20\d\d)\b", q)
@@ -96,6 +123,7 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
         old = [f for f in ctx["facts"] if f["company"] == company and f["metric"] == metric
                and f["date"] <= as_of and f["doc"] not in live_docs and (not period or f["period"] == period)]
         if not live:
+            res["reason"] = "no_evidence"
             return _done(res, INSUFFICIENT, f"No sourced figure for {ctx['metrics'][metric]['name'].lower()}"
                                             + (f" for {period}" if period else "") + " in this deal's live documents.")
         cur = _value_claims(ctx, metric, live, "current")
@@ -108,9 +136,15 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
                     repl = sorted({d["key"] for d in ctx["docs"].values()
                                    if d["supersedes"] in {ctx["passages"][p]["doc"] for p in c["passage_ids"]}})
                     c["text"] += f" – superseded by {', '.join(repl)}"
+                new_docs = {d["key"] for d in ctx["docs"].values() if d["supersedes"] in {f["doc"] for f in old}}
+                for c in cur:
+                    if not {ctx["passages"][p]["doc"] for p in c["passage_ids"]} & new_docs:
+                        c["role"] = "other source"
+                cur.sort(key=lambda c: c["role"] != "current")
                 res["claims"] = cur + prev + _explanations(ctx, deal_id, question, as_of, old)
                 if len(cur) > 1:
-                    res["notes"].append("live sources still disagree on the current value (see conflict register)")
+                    res["notes"].append("separately, live sources disagree on the current value (a source conflict, "
+                                        "not a version change; see the conflict register)")
                 return _done(res, CHANGED, "The figure changed between document versions. " + _summary(cur, prev))
             res["notes"].append("no version change recorded for this figure")
         res["claims"] = cur
@@ -124,6 +158,7 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
     if not good:
         if hits:
             res["notes"].append(f"closest passage {hits[0]['passage']} matched only {hits[0]['matched']}; not cited")
+        res["reason"] = "no_evidence"
         return _done(res, INSUFFICIENT, "No passage in this deal's live documents answers this.")
     top = good[0]
     cls = ctx["passages"][top["passage"]]["evidence_class"]

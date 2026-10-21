@@ -89,8 +89,16 @@ Finding the passage that answers a question is keyword search (BM25 in `search.p
 conflicting sources, changed version, misleading or irrelevant evidence – each with the expected outcome and the
 expected source passages. Measures are reported separately and per question: outcome, citation validity (the passage
 exists and is in scope), citation support (the cited passages match the hand-labelled supporting passages), appropriate
-refusal and conflict detection. The rules were developed alongside this set, so the no-key results are optimistic; a
-held-out set is the next step.
+refusal (and whether it was refused for the right reason) and conflict detection.
+
+All questions are asked in one fixed active deal scope. A refusal carries a reason – `no_evidence`, `wrong_entity` (a
+similarly named, unrelated company, or a figure that belongs to one) or `out_of_scope` (another company that is not in
+the active deal) – kept separate from CONFLICTED, which means relevant sources disagree about the same target fact.
+
+The rules were developed alongside this set, so its results are optimistic. `data/eval/heldout.json` holds questions
+written by a reviewer who had not seen the rules; protocol: freeze the code, record the commit, run once
+(`python -m dealintel eval --questions data/eval/heldout.json`), report by question type with misses and reasons, and
+do not tune to it afterwards.
 
 ## Repository map
 

@@ -29,16 +29,28 @@ def test_as_of_date_answers_with_what_was_known_then(ctx):
     assert r["status"] == "SUPPORTED" and r["citations"] == ["LARK-CIM@v1#p2"]
 
 
-def test_similar_name_and_other_companies_are_declined(ctx):
-    for q in ("What revenue did Larkspur Analytics report?", "What was Rowan's revenue?"):
-        r = qa.answer(ctx, "D-LARK", q)
-        assert r["status"] == "INSUFFICIENT" and r["citations"] == []
+@pytest.mark.parametrize("q,reason", [
+    ("What revenue did Larkspur Analytics report?", "wrong_entity"),
+    ("Did the target company Larkspur report USD 40m in revenue?", "wrong_entity"),
+    ("Did Larkspur's retention improve to 120%?", "wrong_entity"),
+    ("What was Rowan's revenue?", "out_of_scope"),
+    ("What is Project Osier's recurring revenue?", "out_of_scope"),
+    ("What is the customer acquisition cost?", "no_evidence"),
+])
+def test_refusals_carry_the_right_reason(ctx, q, reason):
+    r = qa.answer(ctx, "D-LARK", q)
+    assert r["status"] == "INSUFFICIENT" and r["reason"] == reason and r["citations"] == []
 
 
-def test_wrong_number_from_another_company_is_not_echoed(ctx):
-    r = qa.answer(ctx, "D-LARK", "Did Larkspur's retention improve to 120%?")
-    assert not any(p.startswith("NEWS-") for p in r["citations"])
-    assert 1.20 not in {c["value"] for c in r["claims"]}
+def test_a_figure_in_the_question_that_the_target_does_have_is_not_refused(ctx):
+    assert qa.answer(ctx, "D-LARK", "Is net revenue retention 112%?")["status"] == "CONFLICTED"
+
+
+def test_version_change_keeps_the_other_source_separate(ctx):
+    r = qa.answer(ctx, "D-LARK", "What changed in adjusted EBITDA in the restated memorandum?")
+    roles = {c["passage_ids"][0]: c["role"] for c in r["claims"]}
+    assert roles["LARK-CIM@v2#p3"] == "current" and roles["LARK-QOE@v1#p3"] == "other source"
+    assert roles["LARK-CIM@v1#p3"] == "superseded"
 
 
 def test_missing_period_is_insufficient_not_nearest_year(ctx):

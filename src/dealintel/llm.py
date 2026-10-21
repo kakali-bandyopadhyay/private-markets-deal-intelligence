@@ -114,8 +114,9 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None, *, 
     base = qa.answer(ctx, deal_id, question, as_of)
     res = {"question": question, "deal": deal_id, "as_of": as_of, "mode": "model", "claims": [], "rejected": [],
            "notes": [], "deterministic_status": base["status"]}
-    if base["status"] == qa.INSUFFICIENT and base["answer"].startswith("The question is about"):
-        res["notes"].append("out-of-scope company: declined before any model call")
+    if base.get("reason") in ("wrong_entity", "out_of_scope"):
+        res["reason"] = base["reason"]
+        res["notes"].append(f"{base['reason']}: declined before any model call")
         return _done(res, qa.INSUFFICIENT, base["answer"])
     pack = evidence_pack(ctx, deal_id, question, as_of)
     if not pack:
@@ -136,6 +137,8 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None, *, 
     if status != qa.INSUFFICIENT and not kept:
         res["notes"].append("every claim failed citation validation; answer withheld")
         status = qa.INSUFFICIENT
+    if status == qa.INSUFFICIENT:
+        res["reason"] = "no_evidence"
     if status != base["status"]:
         res["notes"].append(f"no-key mode says {base['status']}")
     return _done(res, status, " ".join(c["text"] for c in kept) or "Not answered from the evidence provided.")

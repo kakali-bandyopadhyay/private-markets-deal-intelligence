@@ -1,5 +1,5 @@
 {
-  "note": "Small, hand-authored prototype evaluation set (30 questions, 6 per category). Expected answers and passages were written by hand. Not investment-grade validation.",
+  "note": "Small, hand-authored prototype evaluation set (30 questions, 6 per type), reviewed by a second person. Every question is asked in one fixed active deal scope (Larkspur, except C06 in Osier's scope). Documents about other companies exist in the corpus but are out of scope. INSUFFICIENT answers carry a reason: no_evidence, wrong_entity (a similarly named unrelated company) or out_of_scope (another company not in the active deal); these are kept separate from CONFLICTED, which means relevant sources disagree about the same target fact. Not investment-grade validation.",
   "questions": [
     {
       "id": "S01",
@@ -73,7 +73,7 @@
         "LARK-LEGAL@v1#p1"
       ],
       "acceptable_passages": [],
-      "expected_answer": "Yes \u2013 termination on 90 days' notice after a change of ownership."
+      "expected_answer": "Yes – termination on 90 days' notice after a change of ownership."
     },
     {
       "id": "S06",
@@ -95,7 +95,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Not in the documents."
+      "expected_answer": "Not in the documents.",
+      "expected_reason": "no_evidence"
     },
     {
       "id": "I02",
@@ -105,7 +106,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Not in the documents."
+      "expected_answer": "Not in the documents.",
+      "expected_reason": "no_evidence"
     },
     {
       "id": "I03",
@@ -115,7 +117,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Only FY2025 revenue is sourced."
+      "expected_answer": "Only FY2025 revenue is sourced.",
+      "expected_reason": "no_evidence"
     },
     {
       "id": "I04",
@@ -125,7 +128,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Not in the documents (EBITDA is, gross margin is not)."
+      "expected_answer": "Not in the documents (EBITDA is, gross margin is not).",
+      "expected_reason": "no_evidence"
     },
     {
       "id": "I05",
@@ -135,7 +139,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Not in the documents."
+      "expected_answer": "Not in the documents.",
+      "expected_reason": "no_evidence"
     },
     {
       "id": "I06",
@@ -145,7 +150,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Not in the documents."
+      "expected_answer": "Not in the documents.",
+      "expected_reason": "no_evidence"
     },
     {
       "id": "C01",
@@ -159,7 +165,7 @@
         "LARK-COHORT@v1#p2"
       ],
       "acceptable_passages": [],
-      "expected_answer": "112% (management) vs 104% (cohort, excluding one-off bundle).",
+      "expected_answer": "112% (management, year-end ARR basis) vs 104% (cohort, recognised revenue excluding the one-off bundle); the cohort's 111% including the bundle differs from 112% because of the ARR vs recognised-revenue basis, not rounding.",
       "expected_values": [
         1.12,
         1.04
@@ -221,14 +227,14 @@
       "id": "C05",
       "category": "conflicting",
       "deal": "D-LARK",
-      "question": "How much of the revenue is subscription revenue share by the adviser's definition?",
+      "question": "What share of FY2025 revenue does each source classify as recurring, and why do the figures differ?",
       "expected_status": "CONFLICTED",
       "expected_passages": [
         "LARK-CIM@v2#p2",
         "LARK-QOE@v1#p2"
       ],
       "acceptable_passages": [],
-      "expected_answer": "Shows both definitions; does not pick.",
+      "expected_answer": "Management 80% (EUR 70.4m, counts implementation and training fees billed in subscription invoices) vs adviser 71% (EUR 62.4m, treats the EUR 8m of those fees as non-recurring).",
       "expected_values": [
         0.8,
         0.71
@@ -305,7 +311,7 @@
         "LARK-QOE@v1#p3",
         "LARK-CIM@v2#p1"
       ],
-      "expected_answer": "EUR 26m to EUR 24m; the QoE still disagrees (EUR 21.5m).",
+      "expected_answer": "IM change: EUR 26m (first issue) to EUR 24m (restated, hardware margin removed). The QoE's EUR 21.5m is a separate source conflict, cited to LARK-QOE@v1#p3 if mentioned.",
       "expected_values": [
         24.0,
         26.0,
@@ -369,29 +375,23 @@
       "id": "M01",
       "category": "misleading",
       "deal": "D-LARK",
-      "question": "What revenue did Larkspur Analytics report?",
+      "question": "Did the target company Larkspur report USD 40m in revenue?",
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Different company with a similar name; decline."
+      "expected_answer": "No – USD 40m is reported for Larkspur Analytics Inc., an unrelated US company; not answered from the target's evidence.",
+      "expected_reason": "wrong_entity"
     },
     {
       "id": "M02",
       "category": "misleading",
       "deal": "D-LARK",
       "question": "Did Larkspur's retention improve to 120%?",
-      "expected_status": "CONFLICTED",
-      "expected_passages": [
-        "LARK-CIM@v2#p4",
-        "LARK-MP@v1#p1",
-        "LARK-COHORT@v1#p2"
-      ],
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "No source gives 120% for Larkspur (that is the unrelated US firm); shows 112% vs 104%.",
-      "expected_values": [
-        1.12,
-        1.04
-      ]
+      "expected_answer": "No source gives 120% for the target; that figure belongs to the unrelated Larkspur Analytics Inc. The target's figures are 112% (management, ARR basis), 111% including the one-off bundle and 104% excluding it.",
+      "expected_reason": "wrong_entity"
     },
     {
       "id": "M03",
@@ -403,7 +403,7 @@
         "LARK-CIM@v2#p5"
       ],
       "acceptable_passages": [],
-      "expected_answer": "No \u2013 Netherlands (Amsterdam).",
+      "expected_answer": "No – Netherlands (Amsterdam).",
       "expected_values": [
         "NL"
       ]
@@ -416,7 +416,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Rowan is a comparable, not part of this deal; decline in deal scope."
+      "expected_answer": "Rowan is in the corpus but not in the active deal scope (Larkspur); declined as out of active deal scope.",
+      "expected_reason": "out_of_scope"
     },
     {
       "id": "M05",
@@ -426,7 +427,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Asked in the Larkspur deal scope; decline."
+      "expected_answer": "Project Osier is in the corpus but not in the active deal scope (Larkspur); declined as out of active deal scope.",
+      "expected_reason": "out_of_scope"
     },
     {
       "id": "M06",
@@ -436,7 +438,8 @@
       "expected_status": "INSUFFICIENT",
       "expected_passages": [],
       "acceptable_passages": [],
-      "expected_answer": "Comparable outside the deal; decline."
+      "expected_answer": "Tansy is in the corpus but not in the active deal scope (Larkspur); declined as out of active deal scope.",
+      "expected_reason": "out_of_scope"
     }
   ]
 }

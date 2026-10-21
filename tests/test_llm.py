@@ -84,7 +84,8 @@ def test_superseded_passages_are_labelled_in_the_evidence_pack(ctx):
 def test_model_mode_runs_through_the_same_evaluation(ctx):
     c = fake(lambda ids: {"status": "INSUFFICIENT", "claims": []})
     res = ev.run(ctx, answer_fn=lambda q: llm.answer(ctx, q["deal"], q["question"], q.get("as_of"), client=c, budget=budget(5)))
-    assert res["summary"]["appropriate_refusal"].startswith("10/10")
+    n = sum(q["expected_status"] == "INSUFFICIENT" for q in ev.load_questions())
+    assert res["summary"]["appropriate_refusal"].startswith(f"{n}/{n}")
 
 
 def test_key_is_never_committed():
