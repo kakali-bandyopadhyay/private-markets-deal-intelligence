@@ -100,3 +100,10 @@ def test_unreadable_model_output_is_withheld_not_crashed(ctx):
                 "usage": {"input_tokens": 10, "output_tokens": 10}}
     r = llm.answer(ctx, "D-LARK", "What was gross logo churn?", client=client, budget=budget())
     assert r["status"] == "INSUFFICIENT" and r["reason"] == "model_error"
+
+
+def test_model_cannot_flatten_a_conflict(ctx):
+    c = fake(lambda ids: {"status": "SUPPORTED", "claims": [{"text": "NRR was 112%.", "passage_ids": ["LARK-CIM@v2#p4"]}]})
+    r = llm.answer(ctx, "D-LARK", "What is net revenue retention?", client=c, budget=budget())
+    assert r["status"] == "CONFLICTED"
+    assert "LARK-COHORT@v1#p2" in r["citations"]

@@ -59,7 +59,12 @@ with an OpenAI model **from the retrieved passages only**:
 - the model is pinned in `data/model_config.json` and each run has a cost cap (default USD 0.50);
 - the model returns structured claims with passage IDs; claims with a missing ID, or an ID outside the evidence pack,
   are rejected (**citation validation, not fact verification** – support is assessed in the evaluation);
-- the model never selects deals, resolves conflicts or approves the memo; tests use fake clients and never call the API.
+- the model never selects deals, resolves conflicts or approves the memo – if it answers as if sources agree where the
+  deterministic check found a conflict, the conflict is restored; tests use fake clients and never call the API.
+
+First run on the development set (USD 0.023, 25 calls): 28/30 outcomes against 30/30 for the no-key mode, all
+citations valid and all refusals correct, but it flattened two conflicts – the reason for the guard above and for
+keeping the no-key mode as the default. Details in `docs/FINDINGS.md`.
 
 ```bash
 python -m dealintel ask D-LARK "What is net revenue retention?" --model

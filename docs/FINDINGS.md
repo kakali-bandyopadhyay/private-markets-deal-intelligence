@@ -157,3 +157,33 @@ agreeing or separate source, and H3-03 does not repeat the cohort's 111% in its 
 
 Changing the metric vocabulary changed the memo's rendered evidence fingerprint, so the synthetic IC decision record was
 re-confirmed against the new memo version; the metric vocabulary is now outside the evidence fingerprint.
+
+## Model mode, first run (development set)
+
+`gpt-5.4-mini-2026-03-17`, code `a7a01c8`, 25 model calls (out-of-scope questions are declined before any call),
+estimated cost USD 0.023 against a USD 0.50 cap. Development set only – the rules were built on these questions.
+
+| Measure | No-key mode | Model mode |
+|---|---|---|
+| Correct outcome | 30/30 | 28/30 |
+| Citations resolving to a real, in-scope passage | all | 34/34 |
+| Cited passages match the labelled support | 19/19 | 16/19 |
+| Expected values present | 19/19 | 14/19 |
+| Declined correctly (right reason) | 11/11 | 11/11 |
+| Conflicts shown | 6/6 | 4/6 |
+| False conflicts | 0/24 | 0/24 |
+
+What it showed:
+
+- The safety design held with a live model: every citation resolved, every refusal was correct, nothing invented.
+- **The model flattened conflicts.** C01 ("What is net revenue retention?") came back SUPPORTED with one figure
+  although live sources disagree, and one other conflict question was not shown as conflicted. The instructions
+  forbid picking a value; the model did it anyway.
+- It dropped figures and citations: C04 lost a citation; V03 and V04 omitted the QoE's separate figure; V02 lost the
+  supporting citation and figures.
+- M03's "values" miss is a scoring artifact: the model wrote "Netherlands", the label expects "NL".
+
+Fix: the conflict check is deterministic and the model cannot override it. If the model answers as if sources agree
+where the check found a conflict, the outcome is kept CONFLICTED and the missing conflict values are added with their
+citations (`tests/test_llm.py::test_model_cannot_flatten_a_conflict`). Re-running model mode after this fix is a
+development check. Product decision: no-key mode stays the default; model mode adds readable wording, not accuracy.

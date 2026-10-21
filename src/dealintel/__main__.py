@@ -120,12 +120,12 @@ def main(argv: list[str] | None = None) -> int:
             budget, client = _model(llm, a.max_cost)
             res = ev.run(ctx, qs, answer_fn=lambda q: llm.answer(ctx, q["deal"], q["question"], q.get("as_of"),
                                                              client=client, budget=budget))
-            mode = f"model {budget.cfg['model']}, {budget.calls} calls, est. ${budget.spent:.4f}"
+            mode = f"{budget.cfg['model']}, {budget.calls} calls, est. ${budget.spent:.4f}"
         else:
-            res, mode = ev.run(ctx, qs), "no-key"
+            res, mode = ev.run(ctx, qs), ""
         name = "eval_heldout" if held else "eval_results"
         out = Path(a.out or f"out/{name}{'_model' if a.model else ''}.md")
-        mode += f" mode, code at commit {ev.commit()}"
+        mode = ("model mode – " + mode if a.model else "no-key mode") + f", code at commit {ev.commit()}"
         label = (f"Held-out set of {len(qs)} questions not seen by the builder (authorship recorded in the question file); run once, "
                  "rules not tuned to it. Small set – not investment-grade validation." if held else None)
         md = ev.as_markdown(res, mode, label)

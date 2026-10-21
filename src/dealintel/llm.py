@@ -4,7 +4,8 @@
 - The model gets a fixed evidence pack (passage IDs and text) and must return structured claims with passage IDs.
 - Citation validation then rejects any claim with a missing passage ID or an ID outside the evidence pack. This is
   citation validation, not fact verification; whether a passage supports a claim is checked in the evaluation.
-- The model never selects deals, resolves conflicts or approves the IC memo.
+- The model never selects deals, resolves conflicts or approves the IC memo: if it answers as if sources agree where
+  the deterministic check found a conflict, the conflict is restored.
 - Spend is capped per run (data/model_config.json); the run stops before a call that could exceed the cap.
 - The API key is read from the environment or a git-ignored .env file and is never printed or logged.
 """
@@ -153,7 +154,15 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None, *, 
         status = qa.INSUFFICIENT
     if status == qa.INSUFFICIENT:
         res["reason"] = "no_evidence"
-    if status != base["status"]:
+    if base["status"] == qa.CONFLICTED and status != qa.CONFLICTED:
+        # the conflict check is deterministic; the model may word the answer but cannot flatten a conflict
+        res["notes"].append(f"model answered {status} where live sources disagree; the conflict values from the "
+                            "deterministic check were added and the outcome kept as CONFLICTED")
+        have = {p for c in res["claims"] for p in c["passage_ids"]}
+        res["claims"] += [{**c, "role": "conflict (deterministic)"} for c in base["claims"]
+                          if c["role"] == "current" and not set(c["passage_ids"]) <= have]
+        status = qa.CONFLICTED
+    elif status != base["status"]:
         res["notes"].append(f"no-key mode says {base['status']}")
     return _done(res, status, " ".join(c["text"] for c in kept) or "Not answered from the evidence provided.")
 
