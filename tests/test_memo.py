@@ -103,3 +103,8 @@ def test_unverified_leads_are_shown_as_such_and_red_flags_carry_a_treatment():
     md = memo.build(load(), "D-LARK")["markdown"]
     assert "**Unverified lead:** One expert heard" in md
     assert "Assess – plan and cost, not a blocker on its own" in md
+
+
+def test_adding_an_evaluation_file_does_not_make_the_ic_decision_stale(copy):
+    (copy / "eval" / "heldout_run9.json").write_text('{"questions": []}\n', encoding="utf-8")
+    assert memo.build(load(copy), "D-LARK")["decision"]["state"] == "RECORDED"

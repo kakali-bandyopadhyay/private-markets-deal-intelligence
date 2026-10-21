@@ -100,8 +100,10 @@ written by a reviewer who had not seen the rules; protocol: freeze the code, rec
 (`python -m dealintel eval --questions data/eval/heldout.json`), report by question type with misses and reasons, and
 do not tune to it afterwards.
 
-**Held-out result, run 1: 4/10 correct outcomes, 12/12 valid citations, two answers that should have been refusals.**
-The misses, their causes and the fixes are in `docs/FINDINGS.md`; run 2 uses a new held-out set.
+**Held-out results, reported separately:** run 1 – 4/10 correct outcomes (12/12 citations resolved; two answers that
+should have been refusals); run 2, new unseen questions after fixing run 1's causes – 6/8 (12/12 citations resolved;
+one false conflict, one missed conflict, one unsupported citation). Misses, causes and fixes are in `docs/FINDINGS.md`;
+the next unbiased check needs a new held-out set.
 
 ## Repository map
 

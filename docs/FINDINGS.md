@@ -1,5 +1,13 @@
 # Findings
 
+Run log (each run once, on a frozen build; scores are reported separately and never combined):
+
+| Run | Questions | Code | Result |
+|---|---|---|---|
+| Development | 30, written alongside the rules | – | 30/30 (optimistic) |
+| Held-out run 1 | 10, reviewer-written | 9cb20c6, run at 2f722ee (questions added, no code change) | **4/10** |
+| Held-out run 2 | 8 new, reviewer-written, unseen by the builder | 197d4b1 | **6/8** |
+
 ## Held-out evaluation, run 1 (no-key mode)
 
 Ten questions written by a reviewer who had not seen the rules, phrased the way a deal team would ask. Expected
@@ -54,3 +62,35 @@ someone who has not seen the code, run once against the frozen build, with the c
 
 Stopgaps to note: the synonym list and the qualifier and population word lists are small and hand-written; they fix the
 observed causes, not paraphrase in general. Embeddings remain the tested alternative (T2).
+
+## Held-out run 2 (no-key mode)
+
+Eight new questions written by a reviewer; the builder had not seen them. Run once on frozen build `197d4b1`.
+
+| Measure | Result |
+|---|---|
+| Correct outcome | 6/8 |
+| Citations resolving to a real, in-scope passage | 12/12 |
+| Cited passages match the labelled support | 4/6 |
+| Declined when it should | 1/2 |
+| Answered when it should have declined | 1/2 |
+| Conflicts shown | 1/2 |
+| False conflicts | 1/6 |
+
+### Issues (three questions)
+
+| ID | Question (abridged) | Expected | Got | Cause |
+|---|---|---|---|---|
+| H2A-08 | Year-end net working capital? | Decline | Conflicted (NRR values) | **False conflict.** Generic words ("year", "end", "net") matched the cohort passage; the run-1 conflict check then attached that passage's NRR conflict to an unrelated question. |
+| H2A-04 | Does retention clear 105% once the bundle is removed? | Conflicted | Declined | The question named the metric but also had enough other words to go to passage search; that search fell short of the match bar and the system declined instead of falling back to the figure and its conflict. |
+| H2A-05 | How did the recurring-revenue mix move in the second CIM? | Changed | Changed, citation support failed | The "explanation" passage cited was about the revenue restatement, not the recurring-revenue share. |
+
+### Fixes (applied after run 2; run 2 is diagnostic evidence only and is not re-scored)
+
+1. A passage match must include at least one specific term; generic words alone cannot carry it. (H2A-08)
+2. When a question names a metric and passage search falls short, answer from the tagged figures, with the conflict
+   check. (H2A-04)
+3. A version-change explanation is cited only if the passage is about the metric asked. (H2A-05)
+
+Each fix is tested with new phrasings (`tests/test_run2_fixes.py`). Development set: 30/30; run-1 questions: 10/10
+(development use). The next unbiased check needs a new held-out set on the fixed build.

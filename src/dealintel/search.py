@@ -59,6 +59,7 @@ def search(ctx: dict, deal_id: str, query: str, k: int = 5, as_of: str | None = 
     alts = {t: [t] + SYNONYMS.get(t, []) for t in q}
     n = len(docs)
     df = {t: sum(any(a in d for a in alts[t]) for d in docs) for t in q}
+    weights = {t: math.log(1 + (n - df[t] + 0.5) / (df[t] + 0.5)) for t in q}
     hits = []
     for p, d in zip(ps, docs):
         s, matched = 0.0, []
@@ -70,6 +71,7 @@ def search(ctx: dict, deal_id: str, query: str, k: int = 5, as_of: str | None = 
             idf = math.log(1 + (n - df[t] + 0.5) / (df[t] + 0.5))
             s += idf * tf * (k1 + 1) / (tf + k1 * (1 - b + b * len(d) / avg))
         if s > 0:
-            hits.append({"passage": p["id"], "score": round(s, 3), "matched": matched, "query_terms": q})
+            hits.append({"passage": p["id"], "score": round(s, 3), "matched": matched, "query_terms": q,
+                         "weights": weights})
     hits.sort(key=lambda h: (-h["score"], h["passage"]))
     return hits[:k]

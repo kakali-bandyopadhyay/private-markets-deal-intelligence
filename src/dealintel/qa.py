@@ -33,6 +33,8 @@ POPULATION = re.compile(r"\b(share|percentage|proportion|how many|most|majority|
                         r"(\w+['’]?s? )?customers\b")
 NUM = re.compile(r"(?:usd|eur|\$|€)?\s?(\d+(?:\.\d+)?)\s?(%|m\b|bn\b)")
 MIN_MATCHED, MIN_COVERAGE = 2, 0.5
+WEAK_TERMS = {"year", "end", "net", "total", "figure", "number", "level", "rate", "amount", "value", "time", "period",
+              "one", "off", "fy2025", "2025", "2026", "first", "second", "last", "next"}
 
 
 def _find(text: str, phrases: dict[str, str]) -> list[tuple[str, str]]:
@@ -123,8 +125,8 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
         hits = search(ctx, deal_id, question, k=1, as_of=as_of, ignore=ignore)
         if hits and len(hits[0]["matched"]) >= 3:
             text_hit = hits[0]
-    if found and not text_hit:
-        metric = found[0][0]
+    def figure(metric: str) -> dict:
+        """Answer from tagged facts: qualifier check, then version history, then conflicts."""
         res["metric"] = metric
         qual = QUALIFIERS.search(q)
         if qual:
@@ -156,7 +158,7 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
                     if not {ctx["passages"][p]["doc"] for p in c["passage_ids"]} & new_docs:
                         c["role"] = "other source"
                 cur.sort(key=lambda c: c["role"] != "current")
-                res["claims"] = cur + prev + _explanations(ctx, deal_id, question, as_of, old)
+                res["claims"] = cur + prev + _explanations(ctx, deal_id, question, as_of, old, metric)
                 if len(cur) > 1:
                     res["notes"].append("separately, live sources disagree on the current value (a source conflict, "
                                         "not a version change; see the conflict register)")
@@ -167,9 +169,18 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
             return _done(res, CONFLICTED, "Sources disagree; no value is picked. " + _summary(cur))
         return _done(res, SUPPORTED, cur[0]["text"])
 
+    if found and not text_hit:
+        return figure(found[0][0])
+
     ignore = set(tokens(" ".join(ctx["companies"][company]["aliases"])))
     hits = search(ctx, deal_id, question, k=3, as_of=as_of, ignore=ignore)
-    good = [h for h in hits if len(h["matched"]) >= MIN_MATCHED and len(h["matched"]) / max(len(h["query_terms"]), 1) >= MIN_COVERAGE]
+    # a match must include at least one specific term: generic words ("year", "end", "net") alone cannot carry it
+    good = [h for h in hits if len(h["matched"]) >= MIN_MATCHED
+            and len(h["matched"]) / max(len(h["query_terms"]), 1) >= MIN_COVERAGE
+            and set(h["matched"]) - WEAK_TERMS]
+    if not good and found:
+        res["notes"].append("no passage matched the question well enough; answered from the tagged figures instead")
+        return figure(found[0][0])
     if not good:
         if hits:
             res["notes"].append(f"closest passage {hits[0]['passage']} matched only {hits[0]['matched']}; not cited")
@@ -204,15 +215,17 @@ def answer(ctx: dict, deal_id: str, question: str, as_of: str | None = None) -> 
     return _done(res, SUPPORTED, ctx["passages"][top["passage"]]["text"])
 
 
-def _explanations(ctx: dict, deal_id: str, question: str, as_of: str, old: list[dict]) -> list[dict]:
-    """The passage in the replacing version that explains the change, if search finds one."""
+def _explanations(ctx: dict, deal_id: str, question: str, as_of: str, old: list[dict], metric: str) -> list[dict]:
+    """The passage in the replacing version that explains the change - only if it is about this metric."""
     old_docs = {f["doc"] for f in old}
     new_docs = {d["key"] for d in ctx["docs"].values() if d["supersedes"] in old_docs}
     hits = [h for h in search(ctx, deal_id, question + " restated replaces exclude", k=10, as_of=as_of)
             if ctx["passages"][h["passage"]]["doc"] in new_docs]
     fact_ps = {f["passage"] for f in ctx["facts"]}
+    names = ctx["metrics"][metric]["aliases"]
     for h in hits:
-        if h["passage"] not in fact_ps:
+        text = ctx["passages"][h["passage"]]["text"].lower()
+        if h["passage"] not in fact_ps and any(re.search(rf"\b{re.escape(a)}\b", text) for a in names):
             return [{"text": ctx["passages"][h["passage"]]["text"], "passage_ids": [h["passage"]], "role": "explanation"}]
     return []
 

@@ -13,7 +13,9 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
 
 
-NOT_EVIDENCE = frozenset({"ic_decisions.json", "model_config.json", "questions.json", "heldout.json", "value_assumptions.json"})
+# not evidence: the IC decision record (it points at the memo), model settings, value assumptions and every evaluation
+# file - adding a question set must never change the memo fingerprint
+NOT_EVIDENCE = frozenset({"ic_decisions.json", "model_config.json", "value_assumptions.json", "eval/"})
 
 
 def _read(path: Path) -> dict:
@@ -24,7 +26,8 @@ def fingerprint(data_dir: Path = DATA, exclude: frozenset[str] = frozenset()) ->
     """SHA-256 over every data file, independent of line endings (Windows checkouts give the same value)."""
     h = hashlib.sha256()
     for p in sorted(data_dir.rglob("*.json")):
-        if p.name in exclude:
+        rel = p.relative_to(data_dir).as_posix()
+        if p.name in exclude or any(rel.startswith(x) for x in exclude if x.endswith("/")):
             continue
         h.update(p.relative_to(data_dir).as_posix().encode())
         h.update(p.read_bytes().replace(b"\r\n", b"\n"))

@@ -1,0 +1,99 @@
+{
+  "note": "Fresh Run 2 question set, prepared before inspecting the implementation. Do not tune rules to this set before reporting its result. Freeze code/configuration, record the commit, run once, and report per question/type with misses and reasons. Small prototype challenge, not investment-grade validation.",
+  "questions": [
+    {
+      "id": "H2A-01",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "What did the customer say about support quality and the mobile app?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": ["LARK-EXP2@v1#p3"],
+      "acceptable_passages": [],
+      "expected_answer": "The customer rated support quality as good and described the mobile app as dated.",
+      "author": "reviewer"
+    },
+    {
+      "id": "H2A-02",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "How exposed is Larkspur to its single biggest customer?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": ["LARK-COHORT@v1#p4"],
+      "acceptable_passages": [],
+      "expected_answer": "The largest single customer accounts for 9% of revenue.",
+      "expected_values": [0.09],
+      "author": "reviewer"
+    },
+    {
+      "id": "H2A-03",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "Which EBITDA figure should we use for the base case, given the latest diligence?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": ["LARK-CIM@v2#p3", "LARK-QOE@v1#p3"],
+      "acceptable_passages": [],
+      "expected_answer": "The restated CIM gives EUR 24m; the draft QoE gives EUR 21.5m after excluding EUR 2.5m of planned savings that have not started.",
+      "expected_values": [24.0, 21.5],
+      "author": "reviewer"
+    },
+    {
+      "id": "H2A-04",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "Does the retention evidence clear the 105% hurdle once the one-off bundle is removed?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": ["LARK-CIM@v2#p4", "LARK-MP@v1#p1", "LARK-COHORT@v1#p2"],
+      "acceptable_passages": [],
+      "expected_answer": "Management reports 112%; the cohort analysis gives 104% excluding the bundle and 111% including it, so the result depends on the measurement basis.",
+      "expected_values": [1.12, 1.04],
+      "author": "reviewer"
+    },
+    {
+      "id": "H2A-05",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "How did the recurring-revenue mix move when the second CIM was issued?",
+      "expected_status": "CHANGED",
+      "expected_passages": ["LARK-CIM@v1#p2", "LARK-CIM@v2#p2"],
+      "acceptable_passages": ["LARK-QOE@v1#p2"],
+      "expected_answer": "It moved from 78% in CIM v1 to 80% in CIM v2; the later QoE reports 71% under its fee classification.",
+      "expected_values": [0.78, 0.8, 0.71],
+      "author": "reviewer"
+    },
+    {
+      "id": "H2A-06",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "Between the first and restated CIM, did Larkspur change its headquarters or customer-base description?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": ["LARK-CIM@v2#p5"],
+      "acceptable_passages": [],
+      "expected_answer": "No material change is reported: it remains headquartered in Amsterdam and serves about 1,400 fleet operators.",
+      "author": "reviewer"
+    },
+    {
+      "id": "H2A-07",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "What proportion of next year's customer renewals is at risk?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "The documents do not provide a renewal schedule or the share of next year's renewals at risk.",
+      "author": "reviewer",
+      "expected_reason": "no_evidence"
+    },
+    {
+      "id": "H2A-08",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "What was Larkspur's year-end net working capital?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "The documents do not state year-end net working capital.",
+      "author": "reviewer",
+      "expected_reason": "no_evidence"
+    }
+  ]
+}
