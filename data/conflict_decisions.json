@@ -1,0 +1,32 @@
+{
+  "note": "Accepting a conflict is a recorded decision, not a claim that the sources agree. Accepted conflicts stay visible in the memo.",
+  "records": [
+    {
+      "conflict": "CF-LARK-recurring_revenue_share-FY2025",
+      "status": "ACCEPTED",
+      "memo_use": "ALLOWED_WITH_DISCLOSURE",
+      "base_case": "LARK-QOE@v1#p2",
+      "rationale": "Definitions differ (implementation and training fees). Use the adviser's 71% as the base case and show management's 80%.",
+      "accepted_by": "Deal team VP (synthetic role)",
+      "at": "2026-07-08T11:00:00Z"
+    },
+    {
+      "conflict": "CF-LARK-adj_ebitda_eur_m-FY2025",
+      "status": "ACCEPTED",
+      "memo_use": "ALLOWED_WITH_DISCLOSURE",
+      "base_case": "LARK-QOE@v1#p3",
+      "rationale": "Unexecuted pro forma savings excluded. Value on EUR 21.5m; treat EUR 2.5m as upside if the consolidation is executed.",
+      "accepted_by": "Deal team VP (synthetic role)",
+      "at": "2026-07-08T11:05:00Z"
+    },
+    {
+      "conflict": "CF-LARK-net_revenue_retention-FY2025",
+      "status": "ACCEPTED",
+      "memo_use": "ALLOWED_WITH_DISCLOSURE",
+      "base_case": "LARK-COHORT@v1#p2",
+      "rationale": "The one-off bundle sale is not repeatable. Base case 104%, which fails the 105% screening criterion; IC to weigh this explicitly.",
+      "accepted_by": "Deal team VP (synthetic role)",
+      "at": "2026-07-08T11:10:00Z"
+    }
+  ]
+}

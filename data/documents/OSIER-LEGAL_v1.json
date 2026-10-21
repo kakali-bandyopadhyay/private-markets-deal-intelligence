@@ -1,0 +1,20 @@
+{
+  "evidence_class": "adviser finding",
+  "id": "OSIER-LEGAL",
+  "version": 1,
+  "key": "OSIER-LEGAL@v1",
+  "supersedes": null,
+  "deal": "D-OSIER",
+  "company": "C-OSIER",
+  "title": "Legal due diligence \u2013 red-flag note",
+  "type": "legal_dd",
+  "author_role": "Legal adviser",
+  "date": "2026-05-20",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "A tax authority inquiry into how customers classify contractors may affect the payroll product's calculation rules.",
+      "facts": []
+    }
+  ]
+}

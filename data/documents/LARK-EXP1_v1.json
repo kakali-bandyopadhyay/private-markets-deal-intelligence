@@ -1,0 +1,30 @@
+{
+  "evidence_class": "expert-call claim",
+  "id": "LARK-EXP1",
+  "version": 1,
+  "key": "LARK-EXP1@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Expert call \u2013 former sales director at a competitor",
+  "type": "expert_call",
+  "author_role": "Expert network (call notes)",
+  "date": "2026-06-20",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "The expert described the European fleet maintenance software market as fragmented, with many regional vendors and no dominant player.",
+      "facts": []
+    },
+    {
+      "n": 2,
+      "text": "The expert said they had heard in general market conversations that Larkspur's largest customer may re-tender its maintenance software contract in 2027. Unverified; the expert network confirmed no confidential information was discussed.",
+      "facts": []
+    },
+    {
+      "n": 3,
+      "text": "The expert considered Larkspur's product strong in scheduling but behind competitors in predictive analytics.",
+      "facts": []
+    }
+  ]
+}

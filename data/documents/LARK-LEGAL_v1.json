@@ -1,0 +1,30 @@
+{
+  "evidence_class": "adviser finding",
+  "id": "LARK-LEGAL",
+  "version": 1,
+  "key": "LARK-LEGAL@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Legal due diligence \u2013 red-flag note",
+  "type": "legal_dd",
+  "author_role": "Legal adviser",
+  "date": "2026-07-05",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "The contract with the largest customer contains a change-of-control clause that allows the customer to terminate on 90 days' notice after a change of ownership.",
+      "facts": []
+    },
+    {
+      "n": 2,
+      "text": "Two contractors who wrote parts of the scheduling engine have not signed IP assignment agreements.",
+      "facts": []
+    },
+    {
+      "n": 3,
+      "text": "No material litigation was identified.",
+      "facts": []
+    }
+  ]
+}

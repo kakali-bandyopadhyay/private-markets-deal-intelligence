@@ -1,0 +1,25 @@
+{
+  "evidence_class": "management representation",
+  "id": "BRAM-CALL",
+  "version": 1,
+  "key": "BRAM-CALL@v1",
+  "supersedes": null,
+  "deal": "D-BRAM",
+  "company": "C-BRAM",
+  "title": "Introductory call \u2013 deal team notes",
+  "type": "call_note",
+  "author_role": "Deal team associate",
+  "date": "2026-08-05",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "Management declined to share retention or customer concentration data before the second round.",
+      "facts": []
+    },
+    {
+      "n": 2,
+      "text": "No market share data was provided; management described competitors as small and local.",
+      "facts": []
+    }
+  ]
+}

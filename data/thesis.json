@@ -1,0 +1,75 @@
+{
+  "id": "TH-B2B-SW",
+  "version": 1,
+  "key": "TH-B2B-SW@v1",
+  "name": "European B2B software \u2013 illustrative screening criteria (configurable example, not standard PE rules)",
+  "label": "Illustrative and configurable screening criteria for a prototype. Not any firm's investment criteria and not an investment recommendation.",
+  "criteria": [
+    {
+      "id": "REC",
+      "metric": "recurring_revenue_share",
+      "op": ">=",
+      "value": 0.7,
+      "why": "predictable revenue"
+    },
+    {
+      "id": "EBITDA",
+      "metric": "adj_ebitda_eur_m",
+      "op": "between",
+      "value": [
+        15,
+        60
+      ],
+      "why": "fits the illustrative equity cheque size"
+    },
+    {
+      "id": "NRR",
+      "metric": "net_revenue_retention",
+      "op": ">=",
+      "value": 1.05,
+      "why": "existing customers grow"
+    },
+    {
+      "id": "CONC",
+      "metric": "top10_customer_share",
+      "op": "<=",
+      "value": 0.35,
+      "why": "limits customer concentration"
+    },
+    {
+      "id": "FRAG",
+      "metric": "market_top3_share",
+      "op": "<=",
+      "value": 0.3,
+      "why": "fragmented market leaves room for buy-and-build"
+    },
+    {
+      "id": "GEO",
+      "metric": "hq_country",
+      "op": "in",
+      "value": [
+        "NL",
+        "BE",
+        "DE",
+        "AT",
+        "FR",
+        "SE",
+        "DK",
+        "NO",
+        "FI",
+        "GB",
+        "IE",
+        "CH"
+      ],
+      "why": "European headquarters"
+    }
+  ],
+  "screening_rule": {
+    "max_open": 2,
+    "conflicted_policy": "A CONFLICTED criterion is never treated as passed. If every source value passes, it stays conflicted and goes to the conflict register; if any source value fails, it is an open question counted against the limit. The deal team records which basis to use.",
+    "text": "Advance to diligence when no criterion is NOT MET and at most 2 criteria are UNKNOWN or CONFLICTED with a source value that fails; those become open diligence questions. Otherwise: not enough evidence to screen, or does not meet the criteria. A person on the deal team records the decision."
+  },
+  "conflict_tolerance": {
+    "relative": 0.01
+  }
+}

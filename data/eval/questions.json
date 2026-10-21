@@ -1,0 +1,442 @@
+{
+  "note": "Small, hand-authored prototype evaluation set (30 questions, 6 per category). Expected answers and passages were written by hand. Not investment-grade validation.",
+  "questions": [
+    {
+      "id": "S01",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "What was Larkspur's FY2025 revenue?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p2",
+        "LARK-QOE@v1#p1"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "EUR 88m (restated IM, agreed by the QoE).",
+      "expected_values": [
+        88.0
+      ]
+    },
+    {
+      "id": "S02",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "What share of revenue comes from the top ten customers?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-MP@v1#p1",
+        "LARK-COHORT@v1#p4"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "31%, management presentation and cohort analysis agree.",
+      "expected_values": [
+        0.31
+      ]
+    },
+    {
+      "id": "S03",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "What was gross logo churn?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-COHORT@v1#p3"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "6% of customers in FY2025.",
+      "expected_values": [
+        0.06
+      ]
+    },
+    {
+      "id": "S04",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "What is the cash conversion?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-QOE@v1#p4"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "84% (QoE draft).",
+      "expected_values": [
+        0.84
+      ]
+    },
+    {
+      "id": "S05",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "Does the contract with the largest customer contain a change-of-control clause?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-LEGAL@v1#p1"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "Yes \u2013 termination on 90 days' notice after a change of ownership."
+    },
+    {
+      "id": "S06",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "Does the company hold a SOC 2 Type II report?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-TECH@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "No; enterprise prospects have asked for one."
+    },
+    {
+      "id": "I01",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "What is Larkspur's employee headcount?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Not in the documents."
+    },
+    {
+      "id": "I02",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "What is the customer acquisition cost?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Not in the documents."
+    },
+    {
+      "id": "I03",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "What was FY2024 revenue?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Only FY2025 revenue is sourced."
+    },
+    {
+      "id": "I04",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "What is the gross margin?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Not in the documents (EBITDA is, gross margin is not)."
+    },
+    {
+      "id": "I05",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "Who is the chief executive and how long have they been in role?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Not in the documents."
+    },
+    {
+      "id": "I06",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "How many new enterprise deals are in the sales pipeline?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Not in the documents."
+    },
+    {
+      "id": "C01",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "What is net revenue retention?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p4",
+        "LARK-MP@v1#p1",
+        "LARK-COHORT@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "112% (management) vs 104% (cohort, excluding one-off bundle).",
+      "expected_values": [
+        1.12,
+        1.04
+      ]
+    },
+    {
+      "id": "C02",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "What share of revenue is recurring?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p2",
+        "LARK-QOE@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "80% (management) vs 71% (QoE).",
+      "expected_values": [
+        0.8,
+        0.71
+      ]
+    },
+    {
+      "id": "C03",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "What was adjusted EBITDA in FY2025?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p3",
+        "LARK-QOE@v1#p3"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "EUR 24m (management) vs EUR 21.5m (QoE).",
+      "expected_values": [
+        24.0,
+        21.5
+      ]
+    },
+    {
+      "id": "C04",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "Is NRR above 105%?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p4",
+        "LARK-MP@v1#p1",
+        "LARK-COHORT@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "Depends on source: yes on management figures, no on the cohort figure.",
+      "expected_values": [
+        1.12,
+        1.04
+      ]
+    },
+    {
+      "id": "C05",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "How much of the revenue is subscription revenue share by the adviser's definition?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p2",
+        "LARK-QOE@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "Shows both definitions; does not pick.",
+      "expected_values": [
+        0.8,
+        0.71
+      ]
+    },
+    {
+      "id": "C06",
+      "category": "conflicting",
+      "deal": "D-OSIER",
+      "question": "What is Project Osier's net revenue retention?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "OSIER-CIM@v1#p3",
+        "OSIER-EXP@v1#p1"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "108% (management) vs about 100% (expert).",
+      "expected_values": [
+        1.08,
+        1.0
+      ]
+    },
+    {
+      "id": "V01",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "How did revenue change between the first and second information memorandum?",
+      "expected_status": "CHANGED",
+      "expected_passages": [
+        "LARK-CIM@v1#p2",
+        "LARK-CIM@v2#p2"
+      ],
+      "acceptable_passages": [
+        "LARK-QOE@v1#p1",
+        "LARK-CIM@v2#p1"
+      ],
+      "expected_answer": "EUR 92m restated to EUR 88m (hardware pass-through excluded).",
+      "expected_values": [
+        88.0,
+        92.0
+      ]
+    },
+    {
+      "id": "V02",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "Why was revenue restated?",
+      "expected_status": "CHANGED",
+      "expected_passages": [
+        "LARK-CIM@v1#p2",
+        "LARK-CIM@v2#p2",
+        "LARK-CIM@v2#p1"
+      ],
+      "acceptable_passages": [
+        "LARK-QOE@v1#p1"
+      ],
+      "expected_answer": "Hardware pass-through (telematics devices resold at cost) excluded.",
+      "expected_values": [
+        88.0,
+        92.0
+      ]
+    },
+    {
+      "id": "V03",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "What changed in adjusted EBITDA in the restated memorandum?",
+      "expected_status": "CHANGED",
+      "expected_passages": [
+        "LARK-CIM@v1#p3",
+        "LARK-CIM@v2#p3"
+      ],
+      "acceptable_passages": [
+        "LARK-QOE@v1#p3",
+        "LARK-CIM@v2#p1"
+      ],
+      "expected_answer": "EUR 26m to EUR 24m; the QoE still disagrees (EUR 21.5m).",
+      "expected_values": [
+        24.0,
+        26.0,
+        21.5
+      ]
+    },
+    {
+      "id": "V04",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "Did the recurring revenue share change after the restatement?",
+      "expected_status": "CHANGED",
+      "expected_passages": [
+        "LARK-CIM@v1#p2",
+        "LARK-CIM@v2#p2"
+      ],
+      "acceptable_passages": [
+        "LARK-QOE@v1#p2",
+        "LARK-CIM@v2#p1"
+      ],
+      "expected_answer": "78% to 80% on the smaller revenue base; the QoE says 71%.",
+      "expected_values": [
+        0.78,
+        0.8,
+        0.71
+      ]
+    },
+    {
+      "id": "V05",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "What was revenue?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-CIM@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "As of 12 May only the first issue existed: EUR 92m.",
+      "expected_values": [
+        92.0
+      ],
+      "as_of": "2026-05-12"
+    },
+    {
+      "id": "V06",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "What was net revenue retention?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-CIM@v1#p4"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "As of 12 May: 112%, one source, no conflict yet.",
+      "expected_values": [
+        1.12
+      ],
+      "as_of": "2026-05-12"
+    },
+    {
+      "id": "M01",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "What revenue did Larkspur Analytics report?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Different company with a similar name; decline."
+    },
+    {
+      "id": "M02",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "Did Larkspur's retention improve to 120%?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p4",
+        "LARK-MP@v1#p1",
+        "LARK-COHORT@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "No source gives 120% for Larkspur (that is the unrelated US firm); shows 112% vs 104%.",
+      "expected_values": [
+        1.12,
+        1.04
+      ]
+    },
+    {
+      "id": "M03",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "Is Larkspur headquartered in the US?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p5"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "No \u2013 Netherlands (Amsterdam).",
+      "expected_values": [
+        "NL"
+      ]
+    },
+    {
+      "id": "M04",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "What was Rowan's revenue?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Rowan is a comparable, not part of this deal; decline in deal scope."
+    },
+    {
+      "id": "M05",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "What is Project Osier's recurring revenue?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Asked in the Larkspur deal scope; decline."
+    },
+    {
+      "id": "M06",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "What revenue did Tansy report?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "Comparable outside the deal; decline."
+    }
+  ]
+}

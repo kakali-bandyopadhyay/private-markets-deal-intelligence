@@ -1,0 +1,177 @@
+{
+  "evidence_class": "internal data",
+  "id": "DB-SNAP",
+  "version": 1,
+  "key": "DB-SNAP@v1",
+  "supersedes": null,
+  "deal": null,
+  "company": null,
+  "title": "Company database snapshot (comparables)",
+  "type": "database_snapshot",
+  "author_role": "Internal data team",
+  "date": "2026-04-01",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "Rowan: route planning software for logistics fleets, Germany. FY2025 revenue EUR 54m, 85% recurring.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 54.0,
+          "period": "FY2025",
+          "company": "C-ROWAN"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.85,
+          "period": "FY2025",
+          "company": "C-ROWAN"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "text": "Sorrel: enterprise asset maintenance software for utilities, France. FY2025 revenue EUR 120m, 74% recurring.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 120.0,
+          "period": "FY2025",
+          "company": "C-SORREL"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.74,
+          "period": "FY2025",
+          "company": "C-SORREL"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "text": "Tansy: fleet telematics hardware and services, UK. FY2025 revenue EUR 75m, 35% recurring.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 75.0,
+          "period": "FY2025",
+          "company": "C-TANSY"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.35,
+          "period": "FY2025",
+          "company": "C-TANSY"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "text": "Vetch: field-service management software for installers, Denmark. FY2025 revenue EUR 41m, 81% recurring.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 41.0,
+          "period": "FY2025",
+          "company": "C-VETCH"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.81,
+          "period": "FY2025",
+          "company": "C-VETCH"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "text": "Yarrow: construction project scheduling software, Netherlands. FY2025 revenue EUR 29m, 77% recurring.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 29.0,
+          "period": "FY2025",
+          "company": "C-YARROW"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.77,
+          "period": "FY2025",
+          "company": "C-YARROW"
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "text": "Alder: workshop management software for vehicle repair garages, Belgium. FY2025 revenue EUR 22m, 79% recurring.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 22.0,
+          "period": "FY2025",
+          "company": "C-ALDER"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.79,
+          "period": "FY2025",
+          "company": "C-ALDER"
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "text": "Burdock: outpatient physiotherapy clinic chain, Germany. FY2025 revenue EUR 140m.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 140.0,
+          "period": "FY2025",
+          "company": "C-BURDOCK"
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "text": "Clover: dental laboratory services group, Netherlands. FY2025 revenue EUR 66m.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 66.0,
+          "period": "FY2025",
+          "company": "C-CLOVER"
+        }
+      ]
+    },
+    {
+      "n": 9,
+      "text": "Dock: facilities maintenance services for commercial fleets' depots, UK. FY2025 revenue EUR 88m.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 88.0,
+          "period": "FY2025",
+          "company": "C-DOCK"
+        }
+      ]
+    },
+    {
+      "n": 10,
+      "text": "Elder: outsourced payroll services for SMEs, Sweden. FY2025 revenue EUR 47m, 60% recurring.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 47.0,
+          "period": "FY2025",
+          "company": "C-ELDER"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.6,
+          "period": "FY2025",
+          "company": "C-ELDER"
+        }
+      ]
+    }
+  ]
+}

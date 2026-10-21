@@ -1,0 +1,30 @@
+{
+  "evidence_class": "adviser finding",
+  "id": "LARK-TECH",
+  "version": 1,
+  "key": "LARK-TECH@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Technology and cyber due diligence note",
+  "type": "tech_dd",
+  "author_role": "Technology adviser",
+  "date": "2026-07-06",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "The platform is hosted on a major public cloud and holds ISO 27001 certification.",
+      "facts": []
+    },
+    {
+      "n": 2,
+      "text": "The company does not hold a SOC 2 Type II report, which several enterprise prospects have requested.",
+      "facts": []
+    },
+    {
+      "n": 3,
+      "text": "About 38% of the codebase runs on an unsupported framework version. We estimate 18 to 24 months and EUR 3m to EUR 4m to remediate; the latest penetration test found no critical issues.",
+      "facts": []
+    }
+  ]
+}

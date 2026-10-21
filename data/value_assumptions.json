@@ -1,0 +1,30 @@
+{
+  "label": "Illustrative assumptions for a prototype value estimate, to be replaced with timed measurements in a pilot. Not measured savings.",
+  "deals_in_diligence_per_year": 12,
+  "activities": [
+    {"id": "lookup", "name": "Finding evidence for a diligence question", "unit": "question",
+     "volume_per_deal": {"low": 100, "base": 150, "high": 250},
+     "minutes_before": {"low": 8, "base": 12, "high": 15},
+     "minutes_after": {"low": 6, "base": 4, "high": 3},
+     "why": "search across data room, adviser reports and call notes vs a cited answer to check"},
+    {"id": "conflict", "name": "Spotting and reconciling conflicting figures", "unit": "conflict",
+     "volume_per_deal": {"low": 4, "base": 6, "high": 10},
+     "minutes_before": {"low": 120, "base": 180, "high": 240},
+     "minutes_after": {"low": 90, "base": 90, "high": 75},
+     "why": "conflicts are listed with sources; people still decide which basis to use"},
+    {"id": "memo", "name": "Assembling and citation-checking the IC memo", "unit": "memo",
+     "volume_per_deal": {"low": 1, "base": 1, "high": 1},
+     "minutes_before": {"low": 600, "base": 960, "high": 1200},
+     "minutes_after": {"low": 480, "base": 480, "high": 420},
+     "why": "claims arrive with citations and the gate checks them; drafting judgement stays with the team"}
+  ],
+  "measures": [
+    {"id": "time_to_evidence", "name": "Median time to find evidence for a question", "kind": "value", "source": "timed tasks in a pilot", "prototype": "not measured"},
+    {"id": "citation_validity", "name": "Citations that point to a real, in-scope passage", "kind": "quality", "source": "evaluation set, automatic", "prototype": "from eval"},
+    {"id": "citation_support", "name": "Cited passages that support the answer", "kind": "quality", "source": "evaluation set, hand-labelled plus spot checks", "prototype": "from eval"},
+    {"id": "unresolved_at_ic", "name": "Conflicts unresolved when the memo reaches IC", "kind": "quality", "source": "memo gate", "prototype": "from gate"},
+    {"id": "correction_effort", "name": "Minutes spent correcting a drafted answer or memo claim", "kind": "quality", "source": "pilot log", "prototype": "not measured"},
+    {"id": "weekly_active", "name": "Deal-team members using it weekly / eligible", "kind": "adoption", "source": "usage log", "prototype": "not measured"},
+    {"id": "memo_share", "name": "IC memos built through the gate / all IC memos", "kind": "adoption", "source": "memo register", "prototype": "not measured"}
+  ]
+}

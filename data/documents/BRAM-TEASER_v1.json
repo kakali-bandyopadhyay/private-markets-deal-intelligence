@@ -1,0 +1,48 @@
+{
+  "evidence_class": "management representation",
+  "id": "BRAM-TEASER",
+  "version": 1,
+  "key": "BRAM-TEASER@v1",
+  "supersedes": null,
+  "deal": "D-BRAM",
+  "company": "C-BRAM",
+  "title": "Teaser",
+  "type": "teaser",
+  "author_role": "Sell-side adviser",
+  "date": "2026-08-01",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "Project Bramble provides practice management software to dental clinics in Germany and Austria.",
+      "facts": [
+        {
+          "metric": "hq_country",
+          "value": "DE",
+          "period": "current"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "text": "FY2025 revenue was EUR 34m and adjusted EBITDA EUR 17m.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 34.0,
+          "period": "FY2025"
+        },
+        {
+          "metric": "adj_ebitda_eur_m",
+          "value": 17.0,
+          "period": "FY2025",
+          "basis": "management-adjusted"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "text": "The majority of revenue comes from subscriptions.",
+      "facts": []
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "evidence_class": "expert-call claim",
+  "id": "OSIER-EXP",
+  "version": 1,
+  "key": "OSIER-EXP@v1",
+  "supersedes": null,
+  "deal": "D-OSIER",
+  "company": "C-OSIER",
+  "title": "Expert call \u2013 former customer success lead",
+  "type": "expert_call",
+  "author_role": "Expert network (call notes)",
+  "date": "2026-05-02",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "In the expert's view, net revenue retention is closer to 100%, because price increases were offset by downgrades among smaller customers.",
+      "facts": [
+        {
+          "metric": "net_revenue_retention",
+          "value": 1.0,
+          "period": "FY2025",
+          "basis": "expert estimate"
+        }
+      ]
+    }
+  ]
+}

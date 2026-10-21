@@ -1,0 +1,30 @@
+{
+  "evidence_class": "expert-call claim",
+  "id": "LARK-EXP2",
+  "version": 1,
+  "key": "LARK-EXP2@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Expert call \u2013 fleet manager at a Larkspur customer",
+  "type": "expert_call",
+  "author_role": "Expert network (call notes)",
+  "date": "2026-06-24",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "Switching away would take six to nine months because Larkspur is integrated with the customer's telematics and parts systems.",
+      "facts": []
+    },
+    {
+      "n": 2,
+      "text": "The customer would accept a price increase of around 5% but would review alternatives above that.",
+      "facts": []
+    },
+    {
+      "n": 3,
+      "text": "Support quality was rated good; the mobile app was described as dated.",
+      "facts": []
+    }
+  ]
+}

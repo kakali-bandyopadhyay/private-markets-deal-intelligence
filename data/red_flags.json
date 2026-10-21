@@ -1,0 +1,71 @@
+{
+  "records": [
+    {
+      "id": "RF-L1",
+      "deal": "D-LARK",
+      "severity": "High",
+      "title": "Change-of-control clause in the largest customer contract",
+      "source": "LARK-LEGAL@v1#p1",
+      "owner": "Legal adviser lead (synthetic role)",
+      "due": "2026-07-31",
+      "action": "Obtain a waiver or consent as a condition of signing.",
+      "treatment": "Investigate – possible condition of signing"
+    },
+    {
+      "id": "RF-L2",
+      "deal": "D-LARK",
+      "severity": "High",
+      "title": "Possible 2027 re-tender by the largest customer (unverified expert-call claim)",
+      "source": "LARK-EXP1@v1#p2",
+      "owner": "Deal team VP (synthetic role)",
+      "due": "2026-07-24",
+      "action": "Verify through permitted diligence (customer call); model the downside if confirmed.",
+      "treatment": "Verify – unverified expert-call lead"
+    },
+    {
+      "id": "RF-L3",
+      "deal": "D-LARK",
+      "severity": "Medium",
+      "title": "No SOC 2 Type II report",
+      "source": "LARK-TECH@v1#p2",
+      "owner": "Operating partner, technology (synthetic role)",
+      "due": "2026-08-15",
+      "action": "Scope and cost a SOC 2 Type II programme for the 100-day plan.",
+      "treatment": "Assess – plan and cost, not a blocker on its own"
+    },
+    {
+      "id": "RF-L4",
+      "deal": "D-LARK",
+      "severity": "Medium",
+      "title": "Missing IP assignments from two contractors",
+      "source": "LARK-LEGAL@v1#p2",
+      "owner": "Legal adviser lead (synthetic role)",
+      "due": "2026-07-31",
+      "action": "Signed assignments as a condition precedent.",
+      "treatment": "Investigate – possible condition precedent"
+    },
+    {
+      "id": "RF-L5",
+      "deal": "D-LARK",
+      "severity": "Medium",
+      "title": "38% of the codebase on an unsupported framework",
+      "source": "LARK-TECH@v1#p3",
+      "owner": "Operating partner, technology (synthetic role)",
+      "due": "2026-08-15",
+      "action": "Price the EUR 3m–4m remediation into the plan; confirm no security exposure in the interim.",
+      "treatment": "Assess – cost and timing, not a blocker on its own"
+    },
+    {
+      "id": "RF-O1",
+      "deal": "D-OSIER",
+      "severity": "High",
+      "title": "Tax authority inquiry may change payroll calculation rules",
+      "source": "OSIER-LEGAL@v1#p1",
+      "owner": null,
+      "due": null,
+      "action": "Not yet assigned.",
+      "treatment": "Investigate – not yet assigned"
+    }
+  ],
+  "note": "Red flags are risks to investigate or assess, not automatic disqualifiers. Treatment is set by the deal team."
+}

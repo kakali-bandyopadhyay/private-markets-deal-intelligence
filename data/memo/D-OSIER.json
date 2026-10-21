@@ -1,0 +1,52 @@
+{
+  "deal": "D-OSIER",
+  "as_of": "2026-05-25",
+  "version": 1,
+  "drafted_by": "Deal team associate (synthetic role)",
+  "reviewed_by": "Deal team associate (synthetic role)",
+  "label": "Evidence-backed IC memo for human review. Synthetic data, illustrative policies.",
+  "claims": [
+    {
+      "id": "O01",
+      "section": "Business",
+      "text": "Payroll and scheduling software for field-service workforces, headquartered in Stockholm.",
+      "passage_ids": [
+        "OSIER-CIM@v1#p1"
+      ],
+      "metrics": [
+        "hq_country"
+      ]
+    },
+    {
+      "id": "O02",
+      "section": "Financials",
+      "text": "Revenue of EUR 61m, 83% recurring; adjusted EBITDA of EUR 19m confirmed by the accounting adviser.",
+      "passage_ids": [
+        "OSIER-CIM@v1#p2",
+        "OSIER-QOE@v1#p1"
+      ],
+      "metrics": [
+        "revenue_eur_m",
+        "recurring_revenue_share",
+        "adj_ebitda_eur_m"
+      ]
+    },
+    {
+      "id": "O03",
+      "section": "Customers",
+      "text": "Net revenue retention is 108%.",
+      "passage_ids": [
+        "OSIER-CIM@v1#p3"
+      ],
+      "metrics": [
+        "net_revenue_retention"
+      ]
+    },
+    {
+      "id": "O04",
+      "section": "Market",
+      "text": "Osier is the market leader in the Nordics.",
+      "passage_ids": []
+    }
+  ]
+}

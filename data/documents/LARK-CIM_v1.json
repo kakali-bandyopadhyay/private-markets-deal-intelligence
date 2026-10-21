@@ -1,0 +1,72 @@
+{
+  "evidence_class": "management representation",
+  "id": "LARK-CIM",
+  "version": 1,
+  "key": "LARK-CIM@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Information memorandum extract (first issue)",
+  "type": "cim_extract",
+  "author_role": "Sell-side adviser",
+  "date": "2026-05-04",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "Project Larkspur is a Netherlands-headquartered provider of fleet maintenance scheduling software, sold as a subscription to around 1,400 fleet operators in nine European countries.",
+      "facts": [
+        {
+          "metric": "hq_country",
+          "value": "NL",
+          "period": "current"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "text": "FY2025 revenue was EUR 92m, of which 78% was recurring subscription and support revenue.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 92.0,
+          "period": "FY2025"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.78,
+          "period": "FY2025",
+          "basis": "subscription and support as share of total revenue"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "text": "Adjusted EBITDA for FY2025 was EUR 26m, after management adjustments for one-off restructuring costs and EUR 2.5m of pro forma savings from a planned office consolidation.",
+      "facts": [
+        {
+          "metric": "adj_ebitda_eur_m",
+          "value": 26.0,
+          "period": "FY2025",
+          "basis": "management-adjusted"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "text": "Net revenue retention across the customer base was 112% in FY2025, driven by module upsell and annual price indexation.",
+      "facts": [
+        {
+          "metric": "net_revenue_retention",
+          "value": 1.12,
+          "period": "FY2025",
+          "basis": "management calculation, all customers"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "text": "Management sees growth from expanding into predictive maintenance and from price increases on legacy contracts.",
+      "facts": []
+    }
+  ]
+}

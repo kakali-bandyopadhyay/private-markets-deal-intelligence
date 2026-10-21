@@ -1,0 +1,205 @@
+{
+  "note": "Synthetic companies. Code names are invented; any resemblance to real companies is unintended.",
+  "companies": [
+    {
+      "id": "C-LARK",
+      "code_name": "Project Larkspur",
+      "sector": "B2B software",
+      "subsector": "maintenance scheduling",
+      "end_market": "fleet and logistics",
+      "business_model": "subscription",
+      "customer_segment": "mid-market",
+      "region": "Western Europe",
+      "deal": "D-LARK",
+      "aliases": [
+        "larkspur",
+        "project larkspur"
+      ]
+    },
+    {
+      "id": "C-BRAM",
+      "code_name": "Project Bramble",
+      "sector": "B2B software",
+      "subsector": "practice management",
+      "end_market": "healthcare providers",
+      "business_model": "subscription",
+      "customer_segment": "SMB",
+      "region": "DACH",
+      "deal": "D-BRAM",
+      "aliases": [
+        "bramble",
+        "project bramble"
+      ]
+    },
+    {
+      "id": "C-OSIER",
+      "code_name": "Project Osier",
+      "sector": "B2B software",
+      "subsector": "workforce payroll",
+      "end_market": "field service",
+      "business_model": "subscription",
+      "customer_segment": "mid-market",
+      "region": "Nordics",
+      "deal": "D-OSIER",
+      "aliases": [
+        "osier",
+        "project osier"
+      ]
+    },
+    {
+      "id": "C-LARKUS",
+      "code_name": "Larkspur Analytics Inc. (unrelated)",
+      "sector": "Data services",
+      "subsector": "logistics data",
+      "end_market": "fleet and logistics",
+      "business_model": "data licensing",
+      "customer_segment": "enterprise",
+      "region": "North America",
+      "deal": null,
+      "aliases": [
+        "larkspur analytics",
+        "larkspur analytics inc"
+      ]
+    },
+    {
+      "id": "C-ROWAN",
+      "code_name": "Rowan",
+      "sector": "B2B software",
+      "subsector": "route planning",
+      "end_market": "fleet and logistics",
+      "business_model": "subscription",
+      "customer_segment": "mid-market",
+      "region": "DACH",
+      "deal": null,
+      "aliases": [
+        "rowan"
+      ]
+    },
+    {
+      "id": "C-SORREL",
+      "code_name": "Sorrel",
+      "sector": "B2B software",
+      "subsector": "asset maintenance",
+      "end_market": "utilities",
+      "business_model": "subscription",
+      "customer_segment": "enterprise",
+      "region": "Western Europe",
+      "deal": null,
+      "aliases": [
+        "sorrel"
+      ]
+    },
+    {
+      "id": "C-TANSY",
+      "code_name": "Tansy",
+      "sector": "Business services",
+      "subsector": "telematics",
+      "end_market": "fleet and logistics",
+      "business_model": "hardware and services",
+      "customer_segment": "mid-market",
+      "region": "UK",
+      "deal": null,
+      "aliases": [
+        "tansy"
+      ]
+    },
+    {
+      "id": "C-VETCH",
+      "code_name": "Vetch",
+      "sector": "B2B software",
+      "subsector": "field-service management",
+      "end_market": "field service",
+      "business_model": "subscription",
+      "customer_segment": "SMB",
+      "region": "Nordics",
+      "deal": null,
+      "aliases": [
+        "vetch"
+      ]
+    },
+    {
+      "id": "C-YARROW",
+      "code_name": "Yarrow",
+      "sector": "B2B software",
+      "subsector": "maintenance scheduling",
+      "end_market": "construction",
+      "business_model": "subscription",
+      "customer_segment": "mid-market",
+      "region": "Western Europe",
+      "deal": null,
+      "aliases": [
+        "yarrow"
+      ]
+    },
+    {
+      "id": "C-ALDER",
+      "code_name": "Alder",
+      "sector": "B2B software",
+      "subsector": "workshop management",
+      "end_market": "fleet and logistics",
+      "business_model": "subscription",
+      "customer_segment": "SMB",
+      "region": "Western Europe",
+      "deal": null,
+      "aliases": [
+        "alder"
+      ]
+    },
+    {
+      "id": "C-BURDOCK",
+      "code_name": "Burdock",
+      "sector": "Healthcare services",
+      "subsector": "outpatient clinics",
+      "end_market": "healthcare providers",
+      "business_model": "services",
+      "customer_segment": "consumer",
+      "region": "DACH",
+      "deal": null,
+      "aliases": [
+        "burdock"
+      ]
+    },
+    {
+      "id": "C-CLOVER",
+      "code_name": "Clover",
+      "sector": "Healthcare services",
+      "subsector": "dental laboratories",
+      "end_market": "healthcare providers",
+      "business_model": "services",
+      "customer_segment": "SMB",
+      "region": "Western Europe",
+      "deal": null,
+      "aliases": [
+        "clover"
+      ]
+    },
+    {
+      "id": "C-DOCK",
+      "code_name": "Dock",
+      "sector": "Business services",
+      "subsector": "facilities maintenance",
+      "end_market": "fleet and logistics",
+      "business_model": "services",
+      "customer_segment": "mid-market",
+      "region": "UK",
+      "deal": null,
+      "aliases": [
+        "dock"
+      ]
+    },
+    {
+      "id": "C-ELDER",
+      "code_name": "Elder",
+      "sector": "Business services",
+      "subsector": "payroll outsourcing",
+      "end_market": "field service",
+      "business_model": "services",
+      "customer_segment": "SMB",
+      "region": "Nordics",
+      "deal": null,
+      "aliases": [
+        "elder"
+      ]
+    }
+  ]
+}

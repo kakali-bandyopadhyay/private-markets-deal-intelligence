@@ -1,0 +1,42 @@
+{
+  "evidence_class": "adviser finding",
+  "id": "LARK-MKT",
+  "version": 1,
+  "key": "LARK-MKT@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Commercial due diligence \u2013 market study extract",
+  "type": "market_study",
+  "author_role": "Commercial adviser",
+  "date": "2026-06-15",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "The addressable European market for fleet maintenance software is estimated at EUR 3.1bn, growing about 9% a year.",
+      "facts": [
+        {
+          "metric": "market_size_eur_bn",
+          "value": 3.1,
+          "period": "2025"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "text": "The three largest vendors together hold about 22% of the market; Larkspur is the fourth largest.",
+      "facts": [
+        {
+          "metric": "market_top3_share",
+          "value": 0.22,
+          "period": "2025"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "text": "Demand is driven by fleet electrification and stricter maintenance compliance rules.",
+      "facts": []
+    }
+  ]
+}

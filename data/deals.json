@@ -1,0 +1,28 @@
+{
+  "deals": [
+    {
+      "id": "D-LARK",
+      "company": "C-LARK",
+      "name": "Project Larkspur",
+      "stage": "diligence",
+      "thesis": "TH-B2B-SW@v1",
+      "role": "centrepiece"
+    },
+    {
+      "id": "D-BRAM",
+      "company": "C-BRAM",
+      "name": "Project Bramble",
+      "stage": "screening",
+      "thesis": "TH-B2B-SW@v1",
+      "role": "supporting: screening stops on unknowns"
+    },
+    {
+      "id": "D-OSIER",
+      "company": "C-OSIER",
+      "name": "Project Osier",
+      "stage": "diligence",
+      "thesis": "TH-B2B-SW@v1",
+      "role": "supporting: blocked at the IC memo gate"
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "revenue_eur_m": {
+    "name": "Revenue",
+    "unit": "EUR m",
+    "aliases": [
+      "revenue",
+      "turnover",
+      "top line"
+    ]
+  },
+  "recurring_revenue_share": {
+    "name": "Recurring revenue share",
+    "unit": "%",
+    "aliases": [
+      "recurring revenue",
+      "recurring share",
+      "subscription revenue share",
+      "recurring"
+    ]
+  },
+  "adj_ebitda_eur_m": {
+    "name": "Adjusted EBITDA",
+    "unit": "EUR m",
+    "aliases": [
+      "ebitda",
+      "adjusted ebitda",
+      "earnings"
+    ]
+  },
+  "net_revenue_retention": {
+    "name": "Net revenue retention",
+    "unit": "%",
+    "aliases": [
+      "net revenue retention",
+      "nrr",
+      "net retention",
+      "retention"
+    ]
+  },
+  "top10_customer_share": {
+    "name": "Top-10 customer share of revenue",
+    "unit": "%",
+    "aliases": [
+      "top ten customers",
+      "top 10 customers",
+      "customer concentration",
+      "concentration"
+    ]
+  },
+  "largest_customer_share": {
+    "name": "Largest customer share of revenue",
+    "unit": "%",
+    "aliases": [
+      "largest customer",
+      "biggest customer"
+    ]
+  },
+  "gross_logo_churn": {
+    "name": "Gross logo churn",
+    "unit": "%",
+    "aliases": [
+      "churn",
+      "logo churn",
+      "customer churn"
+    ]
+  },
+  "market_top3_share": {
+    "name": "Top-3 vendors' market share",
+    "unit": "%",
+    "aliases": [
+      "market share",
+      "fragmented",
+      "fragmentation",
+      "top three vendors",
+      "top 3 vendors"
+    ]
+  },
+  "market_size_eur_bn": {
+    "name": "Addressable market size",
+    "unit": "EUR bn",
+    "aliases": [
+      "market size",
+      "addressable market",
+      "tam"
+    ]
+  },
+  "cash_conversion": {
+    "name": "Cash conversion",
+    "unit": "%",
+    "aliases": [
+      "cash conversion",
+      "cash flow conversion"
+    ]
+  },
+  "hq_country": {
+    "name": "Headquarters country",
+    "unit": "country",
+    "aliases": [
+      "headquarters",
+      "headquartered",
+      "hq",
+      "based"
+    ]
+  }
+}

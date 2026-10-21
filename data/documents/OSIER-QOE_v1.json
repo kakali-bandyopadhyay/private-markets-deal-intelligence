@@ -1,0 +1,32 @@
+{
+  "evidence_class": "adviser finding",
+  "id": "OSIER-QOE",
+  "version": 1,
+  "key": "OSIER-QOE@v1",
+  "supersedes": null,
+  "deal": "D-OSIER",
+  "company": "C-OSIER",
+  "title": "Financial due diligence \u2013 quality of earnings",
+  "type": "qoe_draft",
+  "author_role": "Accounting adviser",
+  "date": "2026-05-15",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "We agree adjusted EBITDA of EUR 19m and recurring revenue of 83%.",
+      "facts": [
+        {
+          "metric": "adj_ebitda_eur_m",
+          "value": 19.0,
+          "period": "FY2025",
+          "basis": "adviser-adjusted"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.83,
+          "period": "FY2025"
+        }
+      ]
+    }
+  ]
+}

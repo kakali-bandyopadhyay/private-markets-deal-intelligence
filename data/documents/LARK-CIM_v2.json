@@ -1,0 +1,73 @@
+{
+  "evidence_class": "management representation",
+  "id": "LARK-CIM",
+  "version": 2,
+  "key": "LARK-CIM@v2",
+  "supersedes": "LARK-CIM@v1",
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Information memorandum extract (second issue, restated)",
+  "type": "cim_extract",
+  "author_role": "Sell-side adviser",
+  "date": "2026-06-02",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "This second issue replaces the first. FY2025 revenue has been restated to exclude hardware pass-through (telematics devices resold at cost).",
+      "facts": []
+    },
+    {
+      "n": 2,
+      "text": "Restated FY2025 revenue is EUR 88m, of which 80% is recurring subscription and support revenue.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 88.0,
+          "period": "FY2025",
+          "basis": "restated, excludes hardware pass-through"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.8,
+          "period": "FY2025",
+          "basis": "subscription and support as share of restated revenue"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "text": "Restated adjusted EBITDA is EUR 24m. The EUR 2m reduction from the first issue reflects the margin previously recognised on hardware. As in the first issue, the figure includes EUR 2.5m of pro forma savings from a planned office consolidation.",
+      "facts": [
+        {
+          "metric": "adj_ebitda_eur_m",
+          "value": 24.0,
+          "period": "FY2025",
+          "basis": "management-adjusted, restated"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "text": "Net revenue retention remains 112% on the restated basis.",
+      "facts": [
+        {
+          "metric": "net_revenue_retention",
+          "value": 1.12,
+          "period": "FY2025",
+          "basis": "management calculation, all customers"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "text": "Headquarters remain in Amsterdam; the customer base is unchanged at around 1,400 fleet operators.",
+      "facts": [
+        {
+          "metric": "hq_country",
+          "value": "NL",
+          "period": "current"
+        }
+      ]
+    }
+  ]
+}

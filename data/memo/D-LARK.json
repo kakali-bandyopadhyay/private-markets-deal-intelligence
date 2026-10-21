@@ -1,0 +1,167 @@
+{
+  "deal": "D-LARK",
+  "as_of": "2026-07-10",
+  "version": 4,
+  "drafted_by": "Deal team associate (synthetic role)",
+  "reviewed_by": "Deal team VP (synthetic role)",
+  "label": "Evidence-backed IC memo for human review. Synthetic data, illustrative policies.",
+  "claims": [
+    {
+      "id": "L01",
+      "section": "Business",
+      "text": "Fleet maintenance scheduling software sold by subscription to around 1,400 fleet operators; headquartered in Amsterdam.",
+      "passage_ids": [
+        "LARK-CIM@v2#p5"
+      ],
+      "metrics": [
+        "hq_country"
+      ]
+    },
+    {
+      "id": "L02",
+      "section": "Financials",
+      "text": "FY2025 revenue of EUR 88m, agreed to the audited accounts after the hardware restatement.",
+      "passage_ids": [
+        "LARK-CIM@v2#p2",
+        "LARK-QOE@v1#p1"
+      ],
+      "metrics": [
+        "revenue_eur_m"
+      ]
+    },
+    {
+      "id": "L03",
+      "section": "Financials",
+      "text": "Recurring revenue is 71% (EUR 62.4m of EUR 88m) on the adviser's definition (base case); management's 80% (EUR 70.4m) also counts EUR 8m of implementation and training fees billed in subscription invoices.",
+      "passage_ids": [
+        "LARK-QOE@v1#p2",
+        "LARK-CIM@v2#p2"
+      ],
+      "metrics": [
+        "recurring_revenue_share"
+      ]
+    },
+    {
+      "id": "L04",
+      "section": "Financials",
+      "text": "Adjusted EBITDA bridge: EUR 26m (first IM) to EUR 24m after the hardware restatement to EUR 21.5m after the adviser excludes EUR 2.5m of unstarted office savings (base case).",
+      "passage_ids": [
+        "LARK-QOE@v1#p3",
+        "LARK-CIM@v2#p3"
+      ],
+      "metrics": [
+        "adj_ebitda_eur_m"
+      ]
+    },
+    {
+      "id": "L05",
+      "section": "Financials",
+      "text": "Cash conversion was 84% in FY2025.",
+      "passage_ids": [
+        "LARK-QOE@v1#p4"
+      ],
+      "metrics": [
+        "cash_conversion"
+      ]
+    },
+    {
+      "id": "L06",
+      "section": "Customers",
+      "text": "Net revenue retention is 104% on recognised revenue excluding a one-off bundle sale to the largest customer (base case), below the 105% screening criterion; 111% including it, and management's 112% is on year-end ARR.",
+      "passage_ids": [
+        "LARK-COHORT@v1#p2",
+        "LARK-COHORT@v1#p1",
+        "LARK-MP@v1#p1"
+      ],
+      "metrics": [
+        "net_revenue_retention"
+      ]
+    },
+    {
+      "id": "L07",
+      "section": "Customers",
+      "text": "The top ten customers are 31% of revenue and the largest is 9%; gross logo churn was 6%.",
+      "passage_ids": [
+        "LARK-COHORT@v1#p4",
+        "LARK-COHORT@v1#p3"
+      ],
+      "metrics": [
+        "top10_customer_share",
+        "largest_customer_share",
+        "gross_logo_churn"
+      ]
+    },
+    {
+      "id": "L08",
+      "section": "Customers",
+      "text": "One customer said switching away would take six to nine months because of telematics and parts-system integration; to test across more customers.",
+      "passage_ids": [
+        "LARK-EXP2@v1#p1"
+      ],
+      "evidence_label": "unverified lead"
+    },
+    {
+      "id": "L09",
+      "section": "Market",
+      "text": "The market is fragmented: the top three vendors hold about 22% of an estimated EUR 3.1bn European market growing about 9% a year.",
+      "passage_ids": [
+        "LARK-MKT@v1#p2",
+        "LARK-MKT@v1#p1"
+      ],
+      "metrics": [
+        "market_top3_share",
+        "market_size_eur_bn"
+      ]
+    },
+    {
+      "id": "L10",
+      "section": "Risks",
+      "text": "The largest customer can terminate on 90 days' notice after a change of ownership.",
+      "passage_ids": [
+        "LARK-LEGAL@v1#p1"
+      ]
+    },
+    {
+      "id": "L11",
+      "section": "Risks",
+      "text": "One expert heard in market conversations that the largest customer may re-tender in 2027; to verify through permitted diligence (customer call), not relied on.",
+      "passage_ids": [
+        "LARK-EXP1@v1#p2"
+      ],
+      "evidence_label": "unverified lead"
+    },
+    {
+      "id": "L12",
+      "section": "Risks",
+      "text": "There is no SOC 2 Type II report, which enterprise prospects have requested; a risk to plan for, not a blocker on its own.",
+      "passage_ids": [
+        "LARK-TECH@v1#p2"
+      ]
+    },
+    {
+      "id": "L13",
+      "section": "Risks",
+      "text": "Two contractors who wrote parts of the scheduling engine have not signed IP assignments.",
+      "passage_ids": [
+        "LARK-LEGAL@v1#p2"
+      ]
+    },
+    {
+      "id": "L15",
+      "section": "Risks",
+      "text": "About 38% of the codebase runs on an unsupported framework version; the adviser estimates 18 to 24 months and EUR 3m to EUR 4m to remediate, with no critical penetration-test findings.",
+      "passage_ids": [
+        "LARK-TECH@v1#p3"
+      ]
+    },
+    {
+      "id": "L14",
+      "section": "Value creation hypotheses",
+      "text": "Pricing headroom may be lower than planned: one customer indicated tolerance around 5% against a planned 6% list increase.",
+      "passage_ids": [
+        "LARK-EXP2@v1#p2",
+        "LARK-MP@v1#p3"
+      ]
+    }
+  ]
+}

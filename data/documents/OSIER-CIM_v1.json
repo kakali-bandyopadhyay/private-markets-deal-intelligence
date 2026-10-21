@@ -1,0 +1,76 @@
+{
+  "evidence_class": "management representation",
+  "id": "OSIER-CIM",
+  "version": 1,
+  "key": "OSIER-CIM@v1",
+  "supersedes": null,
+  "deal": "D-OSIER",
+  "company": "C-OSIER",
+  "title": "Information memorandum extract",
+  "type": "cim_extract",
+  "author_role": "Sell-side adviser",
+  "date": "2026-04-10",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "Project Osier provides payroll and scheduling software for field-service workforces, headquartered in Stockholm.",
+      "facts": [
+        {
+          "metric": "hq_country",
+          "value": "SE",
+          "period": "current"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "text": "FY2025 revenue was EUR 61m, 83% recurring; adjusted EBITDA was EUR 19m.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 61.0,
+          "period": "FY2025"
+        },
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.83,
+          "period": "FY2025"
+        },
+        {
+          "metric": "adj_ebitda_eur_m",
+          "value": 19.0,
+          "period": "FY2025",
+          "basis": "management-adjusted"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "text": "Net revenue retention was 108%. The top ten customers account for 22% of revenue.",
+      "facts": [
+        {
+          "metric": "net_revenue_retention",
+          "value": 1.08,
+          "period": "FY2025",
+          "basis": "management calculation"
+        },
+        {
+          "metric": "top10_customer_share",
+          "value": 0.22,
+          "period": "FY2025"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "text": "The three largest vendors in the Nordic market hold about 27% between them.",
+      "facts": [
+        {
+          "metric": "market_top3_share",
+          "value": 0.27,
+          "period": "2025"
+        }
+      ]
+    }
+  ]
+}

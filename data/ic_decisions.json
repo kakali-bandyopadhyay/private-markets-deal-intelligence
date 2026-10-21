@@ -1,0 +1,19 @@
+{
+  "note": "IC decisions are made and recorded by people (synthetic roles). Each is tied to the exact memo version by its fingerprint.",
+  "records": [
+    {
+      "deal": "D-LARK",
+      "decision": "PROCEED",
+      "scope": "Confirmatory diligence and final bid",
+      "decided_by": "IC chair (synthetic role)",
+      "at": "2026-07-15T16:00:00Z",
+      "rationale": "Thesis broadly met; NRR below the criterion on the base case is priced in. Proceed on the adviser's EBITDA, subject to conditions.",
+      "conditions": [
+        "Change-of-control waiver from the largest customer before signing (RF-L1)",
+        "Valuation on adjusted EBITDA of EUR 21.5m and NRR of 104% (base case)",
+        "Customer call on the 2027 re-tender before final bid (RF-L2)"
+      ],
+      "memo_fingerprint": "b9f861c067a61aa6fec2fd60e558b97c367e177c3e52ca8fa3e0f64485603691"
+    }
+  ]
+}

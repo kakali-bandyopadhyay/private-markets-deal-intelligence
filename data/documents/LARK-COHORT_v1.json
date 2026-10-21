@@ -1,0 +1,59 @@
+{
+  "evidence_class": "deal-team analysis",
+  "id": "LARK-COHORT",
+  "version": 1,
+  "key": "LARK-COHORT@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Customer cohort analysis",
+  "type": "data_analysis",
+  "author_role": "Deal team analytics",
+  "date": "2026-07-03",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "Analysis of the customer revenue file (FY2024 to FY2025, 1,388 customers). Net revenue retention here is FY2025 recognised revenue from customers active at the start of FY2025, divided by their FY2024 revenue: it includes price increases, upsell and downgrades, counts churned customers at zero and excludes new customers.",
+      "facts": []
+    },
+    {
+      "n": 2,
+      "text": "Excluding a one-off telematics bundle sold to the largest customer, net revenue retention was 104%. Including it, the figure is 111%; management's 112% is calculated on year-end annual recurring revenue rather than recognised revenue, which explains the one-point difference.",
+      "facts": [
+        {
+          "metric": "net_revenue_retention",
+          "value": 1.04,
+          "period": "FY2025",
+          "basis": "excludes one-off bundle sale to largest customer"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "text": "Gross logo churn was 6% of customers in FY2025.",
+      "facts": [
+        {
+          "metric": "gross_logo_churn",
+          "value": 0.06,
+          "period": "FY2025"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "text": "The top ten customers account for 31% of revenue; the largest single customer accounts for 9%.",
+      "facts": [
+        {
+          "metric": "top10_customer_share",
+          "value": 0.31,
+          "period": "FY2025"
+        },
+        {
+          "metric": "largest_customer_share",
+          "value": 0.09,
+          "period": "FY2025"
+        }
+      ]
+    }
+  ]
+}

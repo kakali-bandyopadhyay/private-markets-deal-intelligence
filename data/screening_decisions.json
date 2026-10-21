@@ -1,0 +1,35 @@
+{
+  "note": "Screening decisions recorded by people (synthetic roles). The engine shows the screening result; it does not decide.",
+  "records": [
+    {
+      "deal": "D-LARK",
+      "as_of": "2026-05-12",
+      "thesis": "TH-B2B-SW@v1",
+      "outcome_seen": "MEETS THE SCREENING CRITERIA \u2013 2 open question(s) for diligence",
+      "decision": "ADVANCE TO DILIGENCE",
+      "decided_by": "Deal team lead (synthetic role)",
+      "at": "2026-05-12T17:20:00Z",
+      "rationale": "Criteria met on the first information memorandum; customer concentration and market structure to be confirmed in diligence."
+    },
+    {
+      "deal": "D-OSIER",
+      "as_of": "2026-05-05",
+      "thesis": "TH-B2B-SW@v1",
+      "outcome_seen": "MEETS THE SCREENING CRITERIA \u2013 1 open question(s) for diligence",
+      "decision": "ADVANCE TO DILIGENCE",
+      "decided_by": "Deal team lead (synthetic role)",
+      "at": "2026-05-05T15:00:00Z",
+      "rationale": "Net revenue retention is disputed by an expert; test it in the cohort analysis."
+    },
+    {
+      "deal": "D-BRAM",
+      "as_of": "2026-08-06",
+      "thesis": "TH-B2B-SW@v1",
+      "outcome_seen": "NOT ENOUGH EVIDENCE TO SCREEN (4 open, limit 2)",
+      "decision": "HOLD \u2013 REQUEST DATA",
+      "decided_by": "Deal team lead (synthetic role)",
+      "at": "2026-08-06T10:30:00Z",
+      "rationale": "Four criteria cannot be assessed; ask the adviser for retention, concentration and recurring-revenue data before spending diligence budget."
+    }
+  ]
+}

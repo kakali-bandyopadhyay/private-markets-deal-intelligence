@@ -1,0 +1,32 @@
+{
+  "evidence_class": "third-party publication",
+  "id": "NEWS-0520",
+  "version": 1,
+  "key": "NEWS-0520@v1",
+  "supersedes": null,
+  "deal": null,
+  "company": "C-LARKUS",
+  "title": "Industry newsletter \u2013 logistics data briefs",
+  "type": "newsletter",
+  "author_role": "Third-party publication",
+  "date": "2026-05-20",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "Larkspur Analytics Inc., a US logistics data firm, reported revenue of USD 40m and said retention improved to 120%.",
+      "facts": [
+        {
+          "metric": "net_revenue_retention",
+          "value": 1.2,
+          "period": "FY2025",
+          "basis": "company statement"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "text": "Fleet software vendors continue to consolidate in North America.",
+      "facts": []
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "evidence_class": "adviser finding",
+  "id": "LARK-QOE",
+  "version": 1,
+  "key": "LARK-QOE@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Financial due diligence \u2013 draft quality of earnings",
+  "type": "qoe_draft",
+  "author_role": "Accounting adviser",
+  "date": "2026-07-01",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "We agree FY2025 restated revenue of EUR 88m to the audited accounts.",
+      "facts": [
+        {
+          "metric": "revenue_eur_m",
+          "value": 88.0,
+          "period": "FY2025",
+          "basis": "agreed to audited accounts"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "text": "Management's 80% (EUR 70.4m of EUR 88m) counts subscription, support, and the implementation and training fees billed in first-year subscription invoices as recurring. We classify the implementation and training fees (EUR 8m) as non-recurring, leaving EUR 62.4m, or 71% of revenue.",
+      "facts": [
+        {
+          "metric": "recurring_revenue_share",
+          "value": 0.71,
+          "period": "FY2025",
+          "basis": "implementation and training fees treated as non-recurring"
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "text": "We do not accept EUR 2.5m of pro forma cost savings from a planned office consolidation that has not started. Our adjusted EBITDA is EUR 21.5m. Bridge: EUR 26m (first IM) to EUR 24m after the hardware restatement to EUR 21.5m after excluding the unstarted savings.",
+      "facts": [
+        {
+          "metric": "adj_ebitda_eur_m",
+          "value": 21.5,
+          "period": "FY2025",
+          "basis": "adviser-adjusted, excludes unexecuted pro forma savings"
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "text": "Cash conversion (operating cash flow over adjusted EBITDA) was 84% in FY2025.",
+      "facts": [
+        {
+          "metric": "cash_conversion",
+          "value": 0.84,
+          "period": "FY2025"
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "text": "This is a draft; figures may change before the final report.",
+      "facts": []
+    }
+  ]
+}

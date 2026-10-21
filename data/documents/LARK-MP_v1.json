@@ -1,0 +1,47 @@
+{
+  "evidence_class": "management representation",
+  "id": "LARK-MP",
+  "version": 1,
+  "key": "LARK-MP@v1",
+  "supersedes": null,
+  "deal": "D-LARK",
+  "company": "C-LARK",
+  "title": "Management presentation \u2013 deal team notes",
+  "type": "management_presentation",
+  "author_role": "Deal team associate",
+  "date": "2026-06-10",
+  "paragraphs": [
+    {
+      "n": 1,
+      "text": "The CEO repeated net revenue retention of 112% and said the top ten customers account for 31% of revenue.",
+      "facts": [
+        {
+          "metric": "net_revenue_retention",
+          "value": 1.12,
+          "period": "FY2025",
+          "basis": "management statement"
+        },
+        {
+          "metric": "top10_customer_share",
+          "value": 0.31,
+          "period": "FY2025"
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "text": "The CFO explained that implementation and training fees are bundled into the first-year subscription invoice.",
+      "facts": []
+    },
+    {
+      "n": 3,
+      "text": "Management plans a 6% list-price increase in 2027 and a predictive-maintenance module priced as an add-on.",
+      "facts": []
+    },
+    {
+      "n": 4,
+      "text": "The largest customer is a pan-European logistics group; management described the relationship as strategic.",
+      "facts": []
+    }
+  ]
+}
