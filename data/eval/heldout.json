@@ -1,4 +1,159 @@
 {
-  "note": "Held-out set: written by a reviewer who had not seen the rules. Protocol: freeze the code, record the commit, run once, report by question type with misses and reasons. Do not tune to this set and then present the same score as held out.",
-  "questions": []
+  "note": "Held-out set: written by a reviewer who had not seen the rules. Protocol: freeze the code, record the commit, run once, report by question type with misses and reasons. Do not tune to this set and then present the same score as held out. Questions H01–H10 written by the reviewer; expected passages labelled from the documents before the run.",
+  "questions": [
+    {
+      "id": "H01",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "How difficult would it be for a customer to switch away from Larkspur?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-EXP2@v1#p1"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "A customer estimated switching would take six to nine months because Larkspur is integrated with its telematics and parts systems.",
+      "author": "reviewer"
+    },
+    {
+      "id": "H02",
+      "category": "supported",
+      "deal": "D-LARK",
+      "question": "What are management’s main levers for growing the business from here?",
+      "expected_status": "SUPPORTED",
+      "expected_passages": [
+        "LARK-MP@v1#p3"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "Management points to predictive maintenance and price increases, including a planned 6% list-price increase in 2027.",
+      "author": "reviewer"
+    },
+    {
+      "id": "H03",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "If we strip out the one-off telematics bundle, what does customer retention look like?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p4",
+        "LARK-MP@v1#p1",
+        "LARK-COHORT@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "Management reports NRR of 112%; the cohort analysis reports 104% excluding the bundle and 111% including it.",
+      "author": "reviewer",
+      "expected_values": [
+        1.12,
+        1.04
+      ]
+    },
+    {
+      "id": "H04",
+      "category": "conflicting",
+      "deal": "D-LARK",
+      "question": "Should we treat implementation and training fees as recurring revenue?",
+      "expected_status": "CONFLICTED",
+      "expected_passages": [
+        "LARK-CIM@v2#p2",
+        "LARK-QOE@v1#p2"
+      ],
+      "acceptable_passages": [],
+      "expected_answer": "Management presents 80% of revenue as recurring; the QoE classifies EUR 8m of implementation and training fees as non-recurring, giving 71%.",
+      "author": "reviewer",
+      "expected_values": [
+        0.8,
+        0.71
+      ]
+    },
+    {
+      "id": "H05",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "What did the seller remove when it revised the FY2025 revenue figure, and what was the new number?",
+      "expected_status": "CHANGED",
+      "expected_passages": [
+        "LARK-CIM@v1#p2",
+        "LARK-CIM@v2#p2"
+      ],
+      "acceptable_passages": [
+        "LARK-CIM@v2#p1",
+        "LARK-QOE@v1#p1"
+      ],
+      "expected_answer": "The revised IM excludes hardware pass-through and restates revenue from EUR 92m to EUR 88m.",
+      "author": "reviewer",
+      "expected_values": [
+        92.0,
+        88.0
+      ]
+    },
+    {
+      "id": "H06",
+      "category": "changed_version",
+      "deal": "D-LARK",
+      "question": "Did the EBITDA figure stay the same in the updated CIM?",
+      "expected_status": "CHANGED",
+      "expected_passages": [
+        "LARK-CIM@v1#p3",
+        "LARK-CIM@v2#p3"
+      ],
+      "acceptable_passages": [
+        "LARK-CIM@v2#p1",
+        "LARK-QOE@v1#p3"
+      ],
+      "expected_answer": "No. Adjusted EBITDA changed from EUR 26m in v1 to EUR 24m in v2.",
+      "author": "reviewer",
+      "expected_values": [
+        26.0,
+        24.0
+      ]
+    },
+    {
+      "id": "H07",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "What net debt would we be taking on at close?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "The documents provided do not state Larkspur’s net debt.",
+      "author": "reviewer",
+      "expected_reason": "no_evidence"
+    },
+    {
+      "id": "H08",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "How much of the company’s revenue is contracted to renew next year?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "The documents do not provide a forward renewal schedule or contracted revenue figure.",
+      "author": "reviewer",
+      "expected_reason": "no_evidence"
+    },
+    {
+      "id": "H09",
+      "category": "misleading",
+      "deal": "D-LARK",
+      "question": "I found a 120% retention figure. Does that belong to our Larkspur?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "No. The 120% figure belongs to an unrelated US company, Larkspur Analytics Inc.",
+      "author": "reviewer",
+      "expected_reason": "wrong_entity"
+    },
+    {
+      "id": "H10",
+      "category": "insufficient",
+      "deal": "D-LARK",
+      "question": "What share of Larkspur’s customers would accept the planned 6% price increase?",
+      "expected_status": "INSUFFICIENT",
+      "expected_passages": [],
+      "acceptable_passages": [],
+      "expected_answer": "The documents do not establish how many customers would accept a 6% increase; one customer said it would review alternatives above about 5%.",
+      "author": "reviewer",
+      "expected_reason": "no_evidence"
+    }
+  ],
+  "frozen_code": "9cb20c6 (questions added without any code or rule change)"
 }
