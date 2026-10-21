@@ -187,3 +187,20 @@ Fix: the conflict check is deterministic and the model cannot override it. If th
 where the check found a conflict, the outcome is kept CONFLICTED and the missing conflict values are added with their
 citations (`tests/test_llm.py::test_model_cannot_flatten_a_conflict`). Re-running model mode after this fix is a
 development check. Product decision: no-key mode stays the default; model mode adds readable wording, not accuracy.
+
+Development check after the guard (code `bef06f8`, USD 0.024, 25 calls): 29/30 outcomes, 6/6 conflicts shown, 34/34
+citations resolved, 11/11 refusals correct. One outcome miss and some dropped figures remain – model wording, not
+accuracy.
+
+## Independent review before publication
+
+A code reviewer (not the builder) checked commit `bef06f8` against the definition of done.
+
+| Finding | Fix |
+|---|---|
+| G3 could be bypassed: a memo claim's `metrics` list narrowed which facts counted as dependencies, so a claim citing a passage with a conflicted fact could list another metric and escape the conflict check. | Every tagged fact in a cited passage now counts; the list cannot narrow it (`test_g3_cannot_be_bypassed_by_listing_a_different_metric`). More claims now show as depending on accepted conflicts (e.g. L02 on recurring revenue), which is correct. |
+| The dashboard showed the development 30/30 without the held-out runs. | The dashboard now has an "Evaluation runs" table with every run, its authorship, code and result, reported separately (`data/eval/run_log.json`). |
+| Clean-clone run not verified by the reviewer. | Run by the owner on a fresh clone; result recorded in the publication commit. |
+
+The memo's dependency list changed, so the synthetic IC decision was re-recorded against the new memo version, as the
+gate requires.

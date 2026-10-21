@@ -52,7 +52,7 @@ def test_removing_a_conflict_decision_blocks_the_claims_that_depend_on_it(copy):
 
 def test_a_conflict_marked_not_usable_blocks_its_claims(copy):
     edit(copy / "conflict_decisions.json", lambda o: o["records"][0].update(memo_use="EXCLUDED"))
-    assert "L03" in failures(memo.build(load(copy), "D-LARK"))["G3"][0]
+    assert any("L03" in f for f in failures(memo.build(load(copy), "D-LARK"))["G3"])
 
 
 def test_citing_a_replaced_version_is_blocked(copy):
@@ -108,3 +108,12 @@ def test_unverified_leads_are_shown_as_such_and_red_flags_carry_a_treatment():
 def test_adding_an_evaluation_file_does_not_make_the_ic_decision_stale(copy):
     (copy / "eval" / "heldout_run9.json").write_text('{"questions": []}\n', encoding="utf-8")
     assert memo.build(load(copy), "D-LARK")["decision"]["state"] == "RECORDED"
+
+
+def test_g3_cannot_be_bypassed_by_listing_a_different_metric(copy):
+    def change(o):
+        c = next(c for c in o["claims"] if c["id"] == "L06")
+        c["metrics"] = ["revenue_eur_m"]
+    edit(copy / "memo" / "D-LARK.json", change)
+    edit(copy / "conflict_decisions.json", lambda o: o["records"].pop(2))
+    assert any("L06" in f for f in failures(memo.build(load(copy), "D-LARK"))["G3"])

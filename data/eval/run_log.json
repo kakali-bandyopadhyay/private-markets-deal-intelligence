@@ -1,0 +1,65 @@
+{
+  "note": "Evaluation runs, reported separately and never combined. Development results are optimistic; held-out runs were run once on a frozen build.",
+  "runs": [
+    {
+      "run": "Development set",
+      "questions": 30,
+      "authorship": "written alongside the rules",
+      "code": "–",
+      "mode": "no-key",
+      "correct": "30/30",
+      "citations": "all resolved",
+      "kind": "development"
+    },
+    {
+      "run": "Held-out run 1",
+      "questions": 10,
+      "authorship": "AI-drafted, reviewed by the owner",
+      "code": "9cb20c6 (run at 2f722ee)",
+      "mode": "no-key",
+      "correct": "4/10",
+      "citations": "12/12 resolved",
+      "kind": "held-out"
+    },
+    {
+      "run": "Held-out run 2",
+      "questions": 8,
+      "authorship": "prepared by an AI assistant that had not inspected the implementation",
+      "code": "197d4b1",
+      "mode": "no-key",
+      "correct": "6/8",
+      "citations": "12/12 resolved",
+      "kind": "held-out"
+    },
+    {
+      "run": "Held-out run 3",
+      "questions": 10,
+      "authorship": "human-drafted and human-reviewed, unseen by the builder",
+      "code": "beab828 (run at 96a201b)",
+      "mode": "no-key",
+      "correct": "7/10 (one right outcome with a wrong answer)",
+      "citations": "11/11 resolved",
+      "kind": "held-out"
+    },
+    {
+      "run": "Model mode, development set",
+      "questions": 30,
+      "authorship": "development set",
+      "code": "a7a01c8",
+      "mode": "gpt-5.4-mini, USD 0.023",
+      "correct": "28/30 (flattened 2 conflicts)",
+      "citations": "34/34 resolved",
+      "kind": "development"
+    },
+    {
+      "run": "Model mode after conflict guard",
+      "questions": 30,
+      "authorship": "development set",
+      "code": "bef06f8",
+      "mode": "gpt-5.4-mini, USD 0.024",
+      "correct": "29/30 (6/6 conflicts)",
+      "citations": "34/34 resolved",
+      "kind": "development"
+    }
+  ]
+}

@@ -117,7 +117,15 @@ def build(ctx: dict) -> str:
                       "conflict_detection", "false_conflicts"))
     q_rows = "".join(f"<tr><td>{e(x['id'])}</td><td>{e(x['question'])}</td><td>{pill(x['got'])}</td><td>"
                      f"{'yes' if x['citation_support'] else '<b>no</b>'}</td></tr>" for x in evr["rows"])
-    parts.append(f"<h2>Prototype evaluation (no-key mode)</h2><p class='mute'>{e(sm['label'])}</p><div class='grid'>"
+    import json as _json
+    log = _json.loads((ctx["data_dir"] / "eval" / "run_log.json").read_text(encoding="utf-8"))
+    lr = "".join(f"<tr><td>{e(r['run'])}</td><td>{pill(r['kind'], 'ok' if r['kind'] == 'held-out' else 'info')}</td>"
+                 f"<td>{r['questions']}</td><td>{e(r['authorship'])}</td><td>{e(r['mode'])}</td><td><code>{e(r['code'])}</code></td>"
+                 f"<td><b>{e(r['correct'])}</b></td><td>{e(r['citations'])}</td></tr>" for r in log["runs"])
+    parts.append(f"<h2>Evaluation runs</h2><p class='mute'>{e(log['note'])} Misses and causes: docs/FINDINGS.md.</p>"
+                 f"<div class='card'><div class='wrap'><table><tr><th>Run</th><th>Kind</th><th>Questions</th><th>Authorship</th>"
+                 f"<th>Mode</th><th>Code</th><th>Correct outcome</th><th>Citations</th></tr>{lr}</table></div></div>")
+    parts.append(f"<h2>Development set detail (no-key mode)</h2><p class='mute'>{e(sm['label'])}</p><div class='grid'>"
                  f"<div class='card'><div class='wrap'><table>{m_rows}</table></div></div><div class='card'><div class='mute'>"
                  f"By category: {e(', '.join(f'{k} {v}' for k, v in sm['by_category'].items()))}</div>"
                  f"<details><summary>All 30 questions</summary><div class='wrap'><table><tr><th>ID</th><th>Question</th><th>Outcome</th>"

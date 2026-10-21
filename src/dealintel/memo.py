@@ -53,7 +53,6 @@ def gate(ctx: dict, memo: dict) -> dict:
     check("G2", "no citation to a replaced document version", stale)
 
     g = gr.build(ctx)
-    fid_metric = {f["id"]: f["metric"] for f in ctx["facts"]}
     facts_by_passage: dict[str, list[str]] = {}
     for f in ctx["facts"]:
         facts_by_passage.setdefault(f["passage"], []).append(f["id"])
@@ -61,9 +60,10 @@ def gate(ctx: dict, memo: dict) -> dict:
         g.node(c["id"], "claim", text=c["text"])
         for p in c["passage_ids"]:
             g.edge(c["id"], "CITES", p)
+            # every tagged fact in a cited passage counts as a dependency; a claim's own "metrics" list cannot narrow
+            # it, so G3 cannot be bypassed by listing a different metric
             for fid in facts_by_passage.get(p, []):
-                if not c.get("metrics") or fid_metric[fid] in c["metrics"]:
-                    g.edge(c["id"], "DEPENDS_ON", fid)
+                g.edge(c["id"], "DEPENDS_ON", fid)
     found = cf.detect(ctx, company, as_of)
     uses = gr.claims_on_conflicts(g, {x["id"]: [s["fact"] for s in x["sources"]] for x in found})
     decisions = {d["conflict"]: d for d in _read(ctx, "conflict_decisions.json")}
