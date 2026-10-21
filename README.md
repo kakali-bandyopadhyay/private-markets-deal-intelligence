@@ -100,6 +100,9 @@ written by a reviewer who had not seen the rules; protocol: freeze the code, rec
 (`python -m dealintel eval --questions data/eval/heldout.json`), report by question type with misses and reasons, and
 do not tune to it afterwards.
 
+**Held-out result, run 1: 4/10 correct outcomes, 12/12 valid citations, two answers that should have been refusals.**
+The misses and their causes are in `docs/FINDINGS.md`.
+
 ## Repository map
 
 | Path | Purpose |

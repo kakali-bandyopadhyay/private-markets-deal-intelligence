@@ -24,5 +24,5 @@ treatment, an expert-call rumour is labelled an unverified lead, and the gate pa
 "The IC chair recorded PROCEED with three conditions, tied to this exact memo version. If anyone edits the memo, the
 decision shows as stale until the IC re-confirms."
 
-**85–90 s – close.** "Thirty-question prototype evaluation, reported per question, and a value range with its
-assumptions. The next step is a held-out question set written by deal professionals."
+**85–90 s – close.** "On my own 30 questions it scores 30/30; on 10 held-out questions written by a reviewer it scores
+4/10, with no invented citations but two answers that should have been refusals. Those misses set the next release."
