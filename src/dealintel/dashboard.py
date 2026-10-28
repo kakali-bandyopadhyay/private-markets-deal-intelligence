@@ -59,6 +59,7 @@ def build(ctx: dict) -> str:
     evr = ev.run(ctx)
     val = value.estimate()
     parts = [f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="/assets/favicon-32x32.png" sizes="32x32"><link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <title>Deal Intelligence Prototype</title><style>{CSS}</style></head><body><main>
 <h1>Private-markets deal intelligence</h1><p class="sub">From screening to an evidence-backed IC memo for human review – personal prototype</p>
 <div class="banner">Synthetic companies, documents and figures. Illustrative screening criteria and policies. Not connected to, or based on, any firm's systems or processes. The system prepares evidence; people make every decision.</div>
